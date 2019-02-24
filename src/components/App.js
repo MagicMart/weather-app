@@ -1,44 +1,25 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Header";
+import Home from "./Home";
+import Forecast from "./Forecast";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            city: ""
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        // this.props.onSubmit(this.props.id, this.state.username);
-    }
-
-    handleChange(e) {
-        const city = e.target.value;
-        this.setState({ city });
-    }
-
     render() {
         return (
-            <div className="container">
-                <Header />
-                <div className="weather-container">
-                    <form className="column" onSubmit={this.handleSubmit}>
-                        <label htmlFor="city">Enter City:</label>
-                        <input
-                            type="text"
-                            id="city"
-                            value={this.state.city}
-                            onChange={this.handleChange}
-                            autoComplete="off"
-                        />
-                    </form>
+            <Router>
+                <div className="container">
+                    <Header />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/forecast" component={Forecast} />
+                        <Route render={() => <p>Not Found</p>} />
+                    </Switch>
                 </div>
-            </div>
+            </Router>
         );
     }
 }
