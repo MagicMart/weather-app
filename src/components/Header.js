@@ -1,24 +1,14 @@
 import React from "react";
+import LocationInput from "./LocationInput";
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+function Header() {
+    return (
+        <header className="header">
+            <h1>Weather App</h1>
 
-    render() {
-        return (
-            <header className="header">
-                <h1>Weather App</h1>
-
-                <form>
-                    <div>
-                        <label htmlFor="city">Enter City:</label>
-                        <input type="text" id="city" name="user_city" />
-                    </div>
-                </form>
-            </header>
-        );
-    }
+            <LocationInput />
+        </header>
+    );
 }
 
 export default Header;

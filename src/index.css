@@ -43,3 +43,17 @@ label {
     display: flex;
     flex-direction: column;
 }
+
+.button {
+    background-color: aquamarine;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
