@@ -32,14 +32,13 @@ class LocationInput extends React.Component {
                         autoComplete="off"
                     />
                     <Link
-                        className="button"
                         disabled={!this.state.city}
                         to={{
                             pathname: "/forecast",
                             search: `?=${this.state.city}`
                         }}
                     >
-                        Get Weather
+                        <button className="button">Get Weather</button>
                     </Link>
                 </form>
             </>
