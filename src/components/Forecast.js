@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../utils/api";
-import image from "../images/weather-icons/10n.svg";
 
 class Forecast extends React.Component {
     constructor(props) {
@@ -43,12 +42,27 @@ class Forecast extends React.Component {
         console.log("component did update");
     }
     render() {
-        console.log(this.state.forecast);
         return (
-            <div className="weather-container">
-                <h3>Hello</h3>
-                <p>{JSON.stringify(this.state.forecast)}</p>
-            </div>
+            <>
+                {this.state.forecast && (
+                    <div className="weather-container">
+                        <h3>{this.state.forecast.city.name}</h3>
+                        <ul>
+                            {this.state.forecast.list.map((el, i) => (
+                                <li key={el + i}>
+                                    <div
+                                        className={`icon-${
+                                            el.weather[0].icon
+                                        } icon`}
+                                    />
+                                    <p>{el.weather[0].description}</p>
+                                    <p>{el.dt_txt}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </>
         );
     }
 }

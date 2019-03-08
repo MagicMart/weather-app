@@ -10,7 +10,7 @@ function fetchForecast(city) {
 }
 
 function fetchFiveDay(city) {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=${APIkey}`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${APIkey}&cnt=5`;
     return axios.get(url).then(function(response) {
         return response.data;
     });
