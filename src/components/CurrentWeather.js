@@ -14,7 +14,7 @@ class Forecast extends React.Component {
     componentDidMount() {
         console.log("component did mount");
         const city = this.props.location.search;
-        api.fetchFiveDay(
+        api.fetchForecast(
             city
                 .split("=")[1]
                 .split(" ")
@@ -34,7 +34,7 @@ class Forecast extends React.Component {
             return;
         }
         const city = this.props.location.search;
-        api.fetchFiveDay(
+        api.fetchForecast(
             city
                 .split("=")[1]
                 .split(" ")
@@ -45,10 +45,26 @@ class Forecast extends React.Component {
     render() {
         console.log(this.state.forecast);
         return (
-            <div className="weather-container">
-                <h3>Hello</h3>
-                <p>{JSON.stringify(this.state.forecast)}</p>
-            </div>
+            <>
+                {this.state.forecast && (
+                    <div className="weather-container">
+                        <h3>Forecast</h3>
+                        <p>{this.state.city.split("=")[1]}</p>
+
+                        {/* <ul>
+                <li>{JSON.stringify(this.state.forecast)}</li>
+                {this.state.forecast &&
+                    this.state.forecast.weather[0].description}
+            </ul> */}
+
+                        <div
+                            className={`icon-${
+                                this.state.forecast.weather[0].icon
+                            } icon`}
+                        />
+                    </div>
+                )}
+            </>
         );
     }
 }
