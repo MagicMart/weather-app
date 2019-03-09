@@ -13,12 +13,9 @@ class Forecast extends React.Component {
     componentDidMount() {
         console.log("component did mount");
         const city = this.props.location.search;
-        api.fetchFiveDay(
-            city
-                .split("=")[1]
-                .split(" ")
-                .join()
-        ).then(data => this.setState({ city: city, forecast: data }));
+        api.fetchFiveDay(city.split("=")[1].trim()).then(data =>
+            this.setState({ city: city, forecast: data })
+        );
     }
 
     componentDidUpdate(prevProps) {
@@ -33,12 +30,9 @@ class Forecast extends React.Component {
             return;
         }
         const city = this.props.location.search;
-        api.fetchFiveDay(
-            city
-                .split("=")[1]
-                .split(" ")
-                .join()
-        ).then(data => this.setState({ city: city, forecast: data }));
+        api.fetchFiveDay(city.split("=")[1].trim()).then(data =>
+            this.setState({ city: city, forecast: data })
+        );
         console.log("component did update");
     }
     render() {
@@ -46,19 +40,26 @@ class Forecast extends React.Component {
             <>
                 {this.state.forecast && (
                     <div className="weather-container">
-                        <h3>{this.state.forecast.city.name}</h3>
+                        <h2>
+                            {this.state.forecast.city.name +
+                                ", " +
+                                this.state.forecast.city.country}
+                        </h2>
+
                         <ul>
-                            {this.state.forecast.list.map((el, i) => (
-                                <li key={el + i}>
-                                    <div
-                                        className={`icon-${
-                                            el.weather[0].icon
-                                        } icon`}
-                                    />
-                                    <p>{el.weather[0].description}</p>
-                                    <p>{el.dt_txt}</p>
-                                </li>
-                            ))}
+                            {this.state.forecast.list
+                                .filter((el, i) => i % 4 === 0)
+                                .map((el, i) => (
+                                    <li key={el + i}>
+                                        <div
+                                            className={`icon-${
+                                                el.weather[0].icon
+                                            } icon`}
+                                        />
+                                        <p>{el.weather[0].description}</p>
+                                        <p>{el.dt_txt}</p>
+                                    </li>
+                                ))}
                         </ul>
                     </div>
                 )}
