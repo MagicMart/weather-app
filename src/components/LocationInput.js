@@ -8,11 +8,23 @@ class LocationInput extends React.Component {
             city: ""
         };
         this.handleChange = this.handleChange.bind(this);
+        this.checkInput = this.checkInput.bind(this);
+    }
+
+    checkInput(city) {
+        const cityLowerCase = city.toLowerCase();
+        const chars = " abcdefghijklmnopqrstuvwxyz,";
+        for (let el of cityLowerCase) {
+            if (!chars.includes(el)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     handleChange(e) {
         const city = e.target.value;
-        this.setState({ city });
+        this.checkInput(city) && this.setState({ city });
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -35,10 +47,12 @@ class LocationInput extends React.Component {
                         disabled={!this.state.city}
                         to={{
                             pathname: "/forecast",
-                            search: `?=${this.state.city}`
+                            search: `?=${this.state.city.trim()}`
                         }}
                     >
-                        <button className="button">Get Weather</button>
+                        <button disabled={!this.state.city} className="button">
+                            Get Weather
+                        </button>
                     </Link>
                 </form>
             </>

@@ -10,10 +10,18 @@ class Forecast extends React.Component {
         };
     }
 
+    cleanCityString(str) {
+        return str
+            .split("=")[1]
+            .split(" ")
+            .filter(el => el !== "")
+            .join(" ");
+    }
+
     componentDidMount() {
         console.log("component did mount");
-        const city = this.props.location.search;
-        api.fetchFiveDay(city.split("=")[1].trim()).then(data =>
+        const city = this.props.location.search.replace("%20", " ");
+        api.fetchFiveDay(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
     }
@@ -30,12 +38,14 @@ class Forecast extends React.Component {
             return;
         }
         const city = this.props.location.search;
-        api.fetchFiveDay(city.split("=")[1].trim()).then(data =>
+        api.fetchFiveDay(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
         console.log("component did update");
     }
+
     render() {
+        console.log("The city " + this.state.city);
         return (
             <>
                 {this.state.forecast && (
