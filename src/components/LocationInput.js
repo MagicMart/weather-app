@@ -43,7 +43,9 @@ class LocationInput extends React.Component {
         return (
             <>
                 <form className="column" onSubmit={this.handleSubmit}>
-                    <label htmlFor="city">Enter City:</label>
+                    <label hidden={true} htmlFor="city">
+                        Enter City:
+                    </label>
                     <input
                         type="text"
                         id="city"
@@ -51,6 +53,7 @@ class LocationInput extends React.Component {
                         value={this.state.city}
                         onChange={this.handleChange}
                         autoComplete="off"
+                        placeholder="Enter City..."
                     />
                     <Link
                         disabled={!this.state.city}
@@ -59,7 +62,11 @@ class LocationInput extends React.Component {
                             search: `?=${this.cleanString(this.state.city)}`
                         }}
                     >
-                        <button disabled={!this.state.city} className="button">
+                        <button
+                            type="submit"
+                            disabled={!this.state.city}
+                            className="button"
+                        >
                             Get Weather
                         </button>
                     </Link>
