@@ -44,6 +44,14 @@ class Forecast extends React.Component {
         console.log("component did update");
     }
 
+    handleDate(str) {
+        const date = new Date(str);
+        const arr = date.toString().split(" ");
+        console.log(arr);
+        const pick = arr.slice(0, 3).join(" ") + arr[6];
+        return pick;
+    }
+
     render() {
         console.log("The city " + this.state.city);
         return (
@@ -66,8 +74,12 @@ class Forecast extends React.Component {
                                                 el.weather[0].icon
                                             } icon`}
                                         />
-                                        <p>{el.weather[0].description}</p>
-                                        <p>{el.dt_txt}</p>
+                                        <p className="description">
+                                            {el.weather[0].description}
+                                        </p>
+                                        <p className="date">
+                                            {this.handleDate(el.dt_txt)}
+                                        </p>
                                     </li>
                                 ))}
                         </ul>
