@@ -70,17 +70,20 @@ class Forecast extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        const {
+            location: { search }
+        } = this.props;
         console.log(
             "preProps " +
                 prevProps.location.search +
                 " and this.props:" +
-                this.props.location.search
+                search
         );
         console.log("this.state.city " + this.state.city);
-        if (this.props.location.search === this.state.city) {
+        if (search === this.state.city) {
             return;
         }
-        const city = this.props.location.search;
+        const city = search;
         api.fetchFiveDay(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
@@ -103,12 +106,14 @@ class Forecast extends React.Component {
         console.log("The city " + this.state.city);
         return (
             <>
-                {this.state.forecast && (
+                {this.state.forecast ? (
                     <Icon
                         handleDate={this.handleDate}
                         cleanCityString={this.cleanCityString}
                         forecast={this.state.forecast}
                     />
+                ) : (
+                    <p className="weather-container">Loading</p>
                 )}
             </>
         );
