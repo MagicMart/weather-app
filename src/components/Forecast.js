@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 import api from "../utils/api";
 
-function Icon(props) {
+function Icon({ forecast, handleDate }) {
     const {
         city: { name, country },
         list
-    } = props.forecast;
+    } = forecast;
     return (
         <div className="weather-container">
             <h2>{name + ", " + country}</h2>
@@ -20,15 +20,12 @@ function Icon(props) {
                             <div
                                 className={`icon-${el.weather[0].icon} icon`}
                             />
+                            <p className="date">{handleDate(el.dt_txt).day}</p>
                             <p className="description">
                                 {el.weather[0].description}
                             </p>
-                            <p className="date">
-                                {props.handleDate(el.dt_txt).day}
-                            </p>
-                            <p className="date">
-                                {props.handleDate(el.dt_txt).time}
-                            </p>
+
+                            <p className="date">{handleDate(el.dt_txt).time}</p>
                         </li>
                     ))}
             </ul>

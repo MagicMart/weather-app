@@ -38,6 +38,10 @@ h1 {
     overflow: hidden;
 }
 
+.home-input {
+    margin-top: 100px;
+}
+
 form {
     margin: 7px;
 }
@@ -74,13 +78,15 @@ li {
 }
 
 .description, .date {
-    margin: 3px;
+   
     width: 100%;
     padding: 0;
     margin: 0;
     font-size:large;
+    font-weight:700;
     text-align:center;
     background-color: antiquewhite;
+   
 }
 
 .column {
@@ -119,6 +125,9 @@ li {
     }
     form {
         margin-top: 0;
+    }
+    .home-input {
+        display: none;
     }
 }
 

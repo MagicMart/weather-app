@@ -5,7 +5,12 @@ import LocationInput from "./LocationInput";
 function Home() {
     return (
         <div className="weather-container">
-            <LocationInput />
+            <div className="home-input">
+                <LocationInput />
+            </div>
+            <div className="message">
+                <h2>Get Weather</h2>
+            </div>
         </div>
     );
 }
