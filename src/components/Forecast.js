@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import api from "../utils/api";
 
 function Icon(props) {
@@ -22,7 +24,10 @@ function Icon(props) {
                                 {el.weather[0].description}
                             </p>
                             <p className="date">
-                                {props.handleDate(el.dt_txt)}
+                                {props.handleDate(el.dt_txt).day}
+                            </p>
+                            <p className="date">
+                                {props.handleDate(el.dt_txt).time}
                             </p>
                         </li>
                     ))}
@@ -30,6 +35,11 @@ function Icon(props) {
         </div>
     );
 }
+
+Icon.propTypes = {
+    forecast: PropTypes.object.isRequired,
+    handleDate: PropTypes.func.isRequired
+};
 
 class Forecast extends React.Component {
     constructor(props) {
@@ -81,8 +91,12 @@ class Forecast extends React.Component {
         const date = new Date(str);
         const arr = date.toString().split(" ");
         console.log(arr);
-        const pick = arr.slice(0, 3).join(" ") + arr[6];
-        return pick;
+        const day = arr.slice(0, 3).join(" ");
+        const time = arr[4]
+            .split(":")
+            .slice(0, 2)
+            .join(":");
+        return { day, time };
     }
 
     render() {
@@ -100,5 +114,9 @@ class Forecast extends React.Component {
         );
     }
 }
+
+Forecast.propTypes = {
+    location: PropTypes.object.isRequired
+};
 
 export default Forecast;
