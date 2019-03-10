@@ -46,12 +46,13 @@ input[type=text] {
   padding: 6px;
   border: none;
   font-size: 17px;
+  margin-bottom: 3px;
 }
 
 .weather-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
     min-height: 100vh;
 }
@@ -69,6 +70,17 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 5px;
+}
+
+.description, .date {
+    margin: 3px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size:large;
+    text-align:center;
+    background-color: antiquewhite;
 }
 
 .column {
@@ -175,6 +187,7 @@ li {
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+    border: 3px solid gray;
 }
