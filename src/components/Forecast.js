@@ -1,6 +1,36 @@
 import React from "react";
 import api from "../utils/api";
 
+function Icon(props) {
+    const {
+        city: { name, country },
+        list
+    } = props.forecast;
+    return (
+        <div className="weather-container">
+            <h2>{name + ", " + country}</h2>
+
+            <ul>
+                {list
+                    .filter((el, i) => i % 4 === 0)
+                    .map((el, i) => (
+                        <li key={el + i}>
+                            <div
+                                className={`icon-${el.weather[0].icon} icon`}
+                            />
+                            <p className="description">
+                                {el.weather[0].description}
+                            </p>
+                            <p className="date">
+                                {props.handleDate(el.dt_txt)}
+                            </p>
+                        </li>
+                    ))}
+            </ul>
+        </div>
+    );
+}
+
 class Forecast extends React.Component {
     constructor(props) {
         super(props);
@@ -8,6 +38,9 @@ class Forecast extends React.Component {
             city: "",
             forecast: null
         };
+
+        this.cleanCityString = this.cleanCityString.bind(this);
+        this.handleDate = this.handleDate.bind(this);
     }
 
     cleanCityString(str) {
@@ -57,33 +90,11 @@ class Forecast extends React.Component {
         return (
             <>
                 {this.state.forecast && (
-                    <div className="weather-container">
-                        <h2>
-                            {this.state.forecast.city.name +
-                                ", " +
-                                this.state.forecast.city.country}
-                        </h2>
-
-                        <ul>
-                            {this.state.forecast.list
-                                .filter((el, i) => i % 4 === 0)
-                                .map((el, i) => (
-                                    <li key={el + i}>
-                                        <div
-                                            className={`icon-${
-                                                el.weather[0].icon
-                                            } icon`}
-                                        />
-                                        <p className="description">
-                                            {el.weather[0].description}
-                                        </p>
-                                        <p className="date">
-                                            {this.handleDate(el.dt_txt)}
-                                        </p>
-                                    </li>
-                                ))}
-                        </ul>
-                    </div>
+                    <Icon
+                        handleDate={this.handleDate}
+                        cleanCityString={this.cleanCityString}
+                        forecast={this.state.forecast}
+                    />
                 )}
             </>
         );
