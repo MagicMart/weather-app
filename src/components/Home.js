@@ -9,7 +9,9 @@ function Home() {
                 <LocationInput />
             </div>
             <div className="message">
-                <h2>Get Weather</h2>
+                <p className="example">
+                    Example input: <samp>london,gb</samp>
+                </p>
             </div>
         </div>
     );

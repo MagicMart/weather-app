@@ -20,12 +20,12 @@ function Icon({ forecast, handleDate }) {
                             <div
                                 className={`icon-${el.weather[0].icon} icon`}
                             />
-                            <p className="date">{handleDate(el.dt_txt).day}</p>
+                            <p className="day">{handleDate(el.dt_txt).day}</p>
                             <p className="description">
-                                {el.weather[0].description}
+                                <em>{el.weather[0].description}</em>
                             </p>
 
-                            <p className="date">{handleDate(el.dt_txt).time}</p>
+                            <p className="time">{handleDate(el.dt_txt).time}</p>
                         </li>
                     ))}
             </ul>
