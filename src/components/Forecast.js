@@ -61,7 +61,8 @@ class Forecast extends React.Component {
     componentDidMount() {
         console.log("component did mount");
         const city = this.props.location.search.replace("%20", " ");
-        api.fetchFiveDay(this.cleanCityString(city)).then(data =>
+        console.log("cDm:" + city);
+        api.memoized(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
     }
@@ -81,7 +82,7 @@ class Forecast extends React.Component {
             return;
         }
         const city = search;
-        api.fetchFiveDay(this.cleanCityString(city)).then(data =>
+        api.memoized(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
         console.log("component did update");

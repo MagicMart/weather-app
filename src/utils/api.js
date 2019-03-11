@@ -1,4 +1,5 @@
 import axios from "axios";
+import memoize from "memoizee";
 
 const APIkey = "3d7abca039d3fb9e0340ec05e86f1c55";
 
@@ -22,7 +23,9 @@ function fetchFiveDay(city) {
     });
 }
 
+const memoized = memoize(fetchFiveDay);
+
 export default {
     fetchForecast,
-    fetchFiveDay
+    memoized
 };
