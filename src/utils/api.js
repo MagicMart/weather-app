@@ -19,11 +19,10 @@ function fetchForecast(city) {
 }
 
 function fetchFiveDay(city) {
-    console.log("fetchFiveDay param: " + city);
     const url = window.encodeURI(
         `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${APIkey}`
     );
-    console.log(url);
+
     return axios
         .get(url)
         .then(function(response) {

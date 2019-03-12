@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import api from "../utils/api";
 
-function Icon({ forecast, handleDate }) {
+function Icon({ forecast, handleDate, match }) {
+    console.log(match);
     const {
         city: { name, country },
         list
@@ -16,17 +18,33 @@ function Icon({ forecast, handleDate }) {
                 {list
                     .filter((el, i) => i % 4 === 0)
                     .map((el, i) => (
-                        <li key={el + i}>
-                            <div
-                                className={`icon-${el.weather[0].icon} icon`}
-                            />
-                            <p className="day">{handleDate(el.dt_txt).day}</p>
-                            <p className="description">
-                                <em>{el.weather[0].description}</em>
-                            </p>
+                        <Link
+                            key={el + i}
+                            to={{
+                                pathname: `/details/${name}`,
+                                query: {
+                                    details: el
+                                }
+                            }}
+                        >
+                            <li>
+                                <div
+                                    className={`icon-${
+                                        el.weather[0].icon
+                                    } icon`}
+                                />
+                                <p className="day">
+                                    {handleDate(el.dt_txt).day}
+                                </p>
+                                <p className="description">
+                                    <em>{el.weather[0].description}</em>
+                                </p>
 
-                            <p className="time">{handleDate(el.dt_txt).time}</p>
-                        </li>
+                                <p className="time">
+                                    {handleDate(el.dt_txt).time}
+                                </p>
+                            </li>
+                        </Link>
                     ))}
             </ul>
         </div>
@@ -66,17 +84,11 @@ class Forecast extends React.Component {
         );
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate() {
         const {
             location: { search }
         } = this.props;
-        console.log(
-            "preProps " +
-                prevProps.location.search +
-                " and this.props:" +
-                search
-        );
-        console.log("this.state.city " + this.state.city);
+
         if (search === this.state.city) {
             return;
         }
@@ -84,7 +96,6 @@ class Forecast extends React.Component {
         api.memoized(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
-        console.log("component did update");
     }
 
     handleDate(str) {
