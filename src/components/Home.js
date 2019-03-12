@@ -10,7 +10,7 @@ function Home() {
             </div>
             <div className="message">
                 <p className="example">
-                    Example input: <samp>london,gb</samp>
+                    Example input: <kbd>london,gb</kbd>
                 </p>
             </div>
         </div>
