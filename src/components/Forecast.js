@@ -59,9 +59,8 @@ class Forecast extends React.Component {
     }
 
     componentDidMount() {
-        console.log("component did mount");
         const city = this.props.location.search.replace("%20", " ");
-        console.log("cDm:" + city);
+
         api.memoized(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );
@@ -91,7 +90,6 @@ class Forecast extends React.Component {
     handleDate(str) {
         const date = new Date(str);
         const arr = date.toString().split(" ");
-        console.log(arr);
         const day = arr.slice(0, 3).join(" ");
         const time = arr[4]
             .split(":")
@@ -101,7 +99,6 @@ class Forecast extends React.Component {
     }
 
     render() {
-        console.log("The city " + this.state.city);
         return (
             <>
                 {this.state.forecast ? (
