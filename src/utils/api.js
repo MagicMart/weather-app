@@ -31,9 +31,21 @@ function fetchFiveDay(city) {
         .catch(handleError);
 }
 
+function handleDate(str) {
+    const date = new Date(str);
+    const arr = date.toString().split(" ");
+    const day = arr.slice(0, 3).join(" ");
+    const time = arr[4]
+        .split(":")
+        .slice(0, 2)
+        .join(":");
+    return { day, time };
+}
+
 const memoized = memoize(fetchFiveDay, { maxAge: 600000 });
 
 export default {
     fetchForecast,
-    memoized
+    memoized,
+    handleDate
 };

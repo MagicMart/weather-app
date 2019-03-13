@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 import api from "../utils/api";
 
-function Icon({ forecast, handleDate, match }) {
-    console.log(match);
+function Icon({ forecast, handleDate }) {
     const {
         city: { name, country },
         list
@@ -23,6 +22,8 @@ function Icon({ forecast, handleDate, match }) {
                             to={{
                                 pathname: `/details/${name}`,
                                 query: {
+                                    name: name,
+                                    country: country,
                                     details: el
                                 }
                             }}
