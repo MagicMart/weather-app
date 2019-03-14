@@ -78,6 +78,24 @@ li {
     margin: 5px;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
 .description,
 .day,
 .time {
@@ -109,7 +127,7 @@ li {
 
 .example {
     font-size: 18px;
-    font-weight:700;
+    font-weight: 700;
 }
 
 .button:active {
@@ -133,9 +151,6 @@ li {
     }
     .home-input {
         display: none;
-    }
-    .message {
-        display: block;
     }
 }
 

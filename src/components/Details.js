@@ -2,14 +2,58 @@ import React from "react";
 import api from "../utils/api";
 
 function DetailDisplay({ name, country, details }) {
+    const {
+        dt_txt,
+        main: {
+            grnd_level,
+            humidity,
+            pressure,
+            sea_level,
+            temp,
+            temp_kf,
+            temp_max,
+            temp_min
+        },
+        weather: [{ description }],
+        wind: { deg, speed }
+    } = details;
     return (
         <div className="weather-container">
             <h2>{`${name}, ${country} `}</h2>
-            <p>{JSON.stringify(details)}</p>
-            <ul>
-                <li>{api.handleDate(details.dt_txt).day}</li>
-                <li>{api.handleDate(details.dt_txt).time}</li>
-            </ul>
+            <table style={{ maxWidth: "900" }}>
+                <thead>
+                    <tr>
+                        <th>Detail</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Day</td>
+                        <td>{api.handleDate(dt_txt).day}</td>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td>{api.handleDate(dt_txt).time}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{description}</td>
+                    </tr>
+                    <tr>
+                        <td>Max Temp</td>
+                        <td>{temp_max}</td>
+                    </tr>
+                    <tr>
+                        <td>Min Temp</td>
+                        <td>{temp_min}</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity</td>
+                        <td>{humidity}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }
