@@ -14,12 +14,18 @@ function DetailDisplay({ name, country, details }) {
             temp_max,
             temp_min
         },
-        weather: [{ description }],
+        weather: [{ description, icon }],
         wind: { deg, speed }
     } = details;
     return (
         <div className="weather-container">
-            <h2>{`${name}, ${country} `}</h2>
+            <div className="detail-header">
+                <div>
+                    <h2>{`${name}, ${country} `}</h2>
+                </div>
+                <div className={`icon-detail icon-${icon}`} />
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -39,6 +45,10 @@ function DetailDisplay({ name, country, details }) {
                     <tr>
                         <td>Description</td>
                         <td>{description}</td>
+                    </tr>
+                    <tr>
+                        <td>Temp now</td>
+                        <td>{temp}</td>
                     </tr>
                     <tr>
                         <td>Max Temp</td>
