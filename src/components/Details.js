@@ -48,15 +48,15 @@ function DetailDisplay({ name, country, details }) {
                     </tr>
                     <tr>
                         <td>Temp now</td>
-                        <td>{temp}</td>
+                        <td>{temp} &deg;C</td>
                     </tr>
                     <tr>
                         <td>Max Temp</td>
-                        <td>{temp_max}</td>
+                        <td>{temp_max} &deg;C</td>
                     </tr>
                     <tr>
                         <td>Min Temp</td>
-                        <td>{temp_min}</td>
+                        <td>{temp_min} &deg;C</td>
                     </tr>
                     <tr>
                         <td>Humidity</td>

@@ -11,7 +11,7 @@ function handleError(error) {
 
 function fetchForecast(city) {
     const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIkey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${APIkey}`
     );
     return axios.get(url).then(function(response) {
         return response.data;
@@ -20,7 +20,7 @@ function fetchForecast(city) {
 
 function fetchFiveDay(city) {
     const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${APIkey}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${APIkey}`
     );
 
     return axios
