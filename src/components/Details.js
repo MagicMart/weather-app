@@ -20,7 +20,7 @@ function DetailDisplay({ name, country, details }) {
     return (
         <div className="weather-container">
             <h2>{`${name}, ${country} `}</h2>
-            <table style={{ maxWidth: "900" }}>
+            <table>
                 <thead>
                     <tr>
                         <th>Detail</th>
@@ -51,6 +51,14 @@ function DetailDisplay({ name, country, details }) {
                     <tr>
                         <td>Humidity</td>
                         <td>{humidity}</td>
+                    </tr>
+                    <tr>
+                        <td>Wind</td>
+                        <td>{speed}</td>
+                    </tr>
+                    <tr>
+                        <td>Degree</td>
+                        <td>{deg}</td>
                     </tr>
                 </tbody>
             </table>
