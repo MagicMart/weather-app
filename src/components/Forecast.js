@@ -69,6 +69,7 @@ class Forecast extends React.Component {
 
     cleanCityString(str) {
         return str
+            .replace("%20", " ")
             .split("=")[1]
             .split(" ")
             .filter(el => el !== "")
@@ -76,8 +77,7 @@ class Forecast extends React.Component {
     }
 
     componentDidMount() {
-        const city = this.props.location.search.replace("%20", " ");
-
+        const city = this.props.location.search;
         api.memoized(this.cleanCityString(city)).then(data =>
             this.setState({ city: city, forecast: data })
         );

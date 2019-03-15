@@ -22,7 +22,7 @@ class LocationInput extends React.Component {
 
     checkInput(str) {
         const city = str.toLowerCase();
-        const chars = " abcdefghijklmnopqrstuvwxyz,";
+        const chars = " abcdefghijklmnopqrstuvwxyz,-";
         for (let char of city) {
             if (!chars.includes(char)) {
                 return false;

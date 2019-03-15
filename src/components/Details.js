@@ -80,7 +80,7 @@ class Details extends React.Component {
 
     componentDidMount() {
         if (!this.props.location.query) {
-            return;
+            return this.props.history.goBack();
         }
         const { query } = this.props.location;
         const details = query.details;
@@ -107,7 +107,8 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default Details;
