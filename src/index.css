@@ -60,6 +60,7 @@ input[type="text"] {
     justify-content: start;
     align-items: center;
     min-height: 100vh;
+    margin: 0 5px;
 }
 
 ul {
