@@ -107,7 +107,7 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-    location: PropTypes.string.isRequired
+    location: PropTypes.object.isRequired
 };
 
 export default Details;

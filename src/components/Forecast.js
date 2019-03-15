@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import api from "../utils/api";
 
-function Icon({ forecast, handleDate }) {
+function Icon({ forecast }) {
     const {
         city: { name, country },
         list
@@ -35,14 +35,14 @@ function Icon({ forecast, handleDate }) {
                                     } icon`}
                                 />
                                 <p className="day">
-                                    {handleDate(el.dt_txt).day}
+                                    {api.handleDate(el.dt_txt).day}
                                 </p>
                                 <p className="description">
                                     <em>{el.weather[0].description}</em>
                                 </p>
 
                                 <p className="time">
-                                    {handleDate(el.dt_txt).time}
+                                    {api.handleDate(el.dt_txt).time}
                                 </p>
                             </li>
                         </Link>
@@ -53,8 +53,7 @@ function Icon({ forecast, handleDate }) {
 }
 
 Icon.propTypes = {
-    forecast: PropTypes.object.isRequired,
-    handleDate: PropTypes.func.isRequired
+    forecast: PropTypes.object.isRequired
 };
 
 class Forecast extends React.Component {
@@ -66,7 +65,6 @@ class Forecast extends React.Component {
         };
 
         this.cleanCityString = this.cleanCityString.bind(this);
-        this.handleDate = this.handleDate.bind(this);
     }
 
     cleanCityString(str) {
@@ -99,23 +97,11 @@ class Forecast extends React.Component {
         );
     }
 
-    handleDate(str) {
-        const date = new Date(str);
-        const arr = date.toString().split(" ");
-        const day = arr.slice(0, 3).join(" ");
-        const time = arr[4]
-            .split(":")
-            .slice(0, 2)
-            .join(":");
-        return { day, time };
-    }
-
     render() {
         return (
             <>
                 {this.state.forecast ? (
                     <Icon
-                        handleDate={this.handleDate}
                         cleanCityString={this.cleanCityString}
                         forecast={this.state.forecast}
                     />
