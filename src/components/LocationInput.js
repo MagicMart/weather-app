@@ -21,14 +21,9 @@ class LocationInput extends React.Component {
     }
 
     checkInput(str) {
-        const city = str.toLowerCase();
+        const city = str.toLowerCase().split("");
         const chars = " abcdefghijklmnopqrstuvwxyz,-";
-        for (let char of city) {
-            if (!chars.includes(char)) {
-                return false;
-            }
-        }
-        return true;
+        return city.every(letter => chars.includes(letter));
     }
 
     handleChange(e) {
@@ -56,6 +51,7 @@ class LocationInput extends React.Component {
                         placeholder="Enter City..."
                     />
                     <Link
+                        role="button"
                         disabled={!this.state.city}
                         to={{
                             pathname: "/forecast",

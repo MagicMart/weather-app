@@ -18,6 +18,7 @@ function Icon({ forecast }) {
                     .filter((el, i) => i % 4 === 0)
                     .map((el, i) => (
                         <Link
+                            role="listitem"
                             key={el + i}
                             to={{
                                 pathname: `/details/${name}`,
