@@ -1,19 +1,11 @@
 import React from "react";
 import api from "../utils/api";
+import PropTypes from "prop-types";
 
 function DetailDisplay({ name, country, details }) {
     const {
         dt_txt,
-        main: {
-            grnd_level,
-            humidity,
-            pressure,
-            sea_level,
-            temp,
-            temp_kf,
-            temp_max,
-            temp_min
-        },
+        main: { humidity, temp_max, temp_min },
         weather: [{ description, icon }],
         wind: { deg, speed }
     } = details;
@@ -47,10 +39,6 @@ function DetailDisplay({ name, country, details }) {
                         <td>{description}</td>
                     </tr>
                     <tr>
-                        <td>Temp now</td>
-                        <td>{temp} &deg;C</td>
-                    </tr>
-                    <tr>
                         <td>Max Temp</td>
                         <td>{temp_max} &deg;C</td>
                     </tr>
@@ -75,6 +63,12 @@ function DetailDisplay({ name, country, details }) {
         </div>
     );
 }
+
+DetailDisplay.propTypes = {
+    name: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    details: PropTypes.object.isRequired
+};
 
 class Details extends React.Component {
     constructor(props) {
@@ -111,5 +105,9 @@ class Details extends React.Component {
         );
     }
 }
+
+Details.propTypes = {
+    location: PropTypes.string.isRequired
+};
 
 export default Details;
