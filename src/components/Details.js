@@ -18,7 +18,7 @@ function DetailDisplay({ name, country, details }) {
                 <div className={`icon-detail icon-${icon}`} />
             </div>
 
-            <table>
+            <table tabIndex="0">
                 <thead>
                     <tr>
                         <th>Detail</th>
