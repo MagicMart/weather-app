@@ -1,24 +1,19 @@
 {
-    "name": "react-fundamentals-curriculum",
+    "name": "mart-weather-app",
     "version": "1.0.0",
-    "description": "<img src=\"https://tylermcginnis.com/tylermcginnis_glasses-300.png\" width=\"300\" align=\"right\">",
+    "description": "Weather App",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode development --open",
         "build": "webpack --mode production"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/MagicMart/react-fundamentals-curriculum.git"
-    },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "Weather",
+        "Forecast"
+    ],
+    "author": "Martin Tudor",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/MagicMart/react-fundamentals-curriculum/issues"
-    },
-    "homepage": "https://github.com/MagicMart/react-fundamentals-curriculum#readme",
     "devDependencies": {
         "@babel/core": "^7.3.3",
         "@babel/preset-env": "^7.3.1",
