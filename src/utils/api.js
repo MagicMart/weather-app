@@ -1,7 +1,7 @@
 import axios from "axios";
 import memoize from "memoizee";
 
-const APIkey = "YOUR API KEY HERE";
+const APIkey = "3d7abca039d3fb9e0340ec05e86f1c55";
 
 function handleError(error) {
     // eslint-disable-next-line no-console
@@ -39,10 +39,10 @@ function handleDate(str) {
         .split(":")
         .slice(0, 2)
         .join(":");
-    return { day, time };
+    return {day, time};
 }
 
-const memoized = memoize(fetchFiveDay, { maxAge: 600000 });
+const memoized = memoize(fetchFiveDay, {maxAge: 600000});
 
 export default {
     fetchForecast,

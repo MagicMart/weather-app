@@ -3,7 +3,7 @@ import LocationInput from "./LocationInput";
 
 function Header() {
     return (
-        <header className="header">
+        <header role="banner" className="header">
             <h1>Weather App</h1>
             <LocationInput />
         </header>

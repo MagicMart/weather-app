@@ -1,35 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import api from "../utils/api";
 
-function Icon({ forecast }) {
+function Icon({forecast}) {
     const {
-        city: { name, country },
+        city: {name, country},
         list
     } = forecast;
     return (
-        <div className="weather-container">
+        <div role="main" className="weather-container">
             <h2>{name + ", " + country}</h2>
 
             <ul>
                 {list
                     .filter((el, i) => i % 4 === 0)
                     .map((el, i) => (
-                        <Link
-                            role="listitem"
-                            key={el + i}
-                            to={{
-                                pathname: `/details/${name}`,
-                                query: {
-                                    name: name,
-                                    country: country,
-                                    details: el
-                                }
-                            }}
-                        >
-                            <li>
+                        <li key={el + i}>
+                            <Link
+                                to={{
+                                    pathname: `/details/${name}`,
+                                    query: {
+                                        name: name,
+                                        country: country,
+                                        details: el
+                                    }
+                                }}
+                            >
                                 <div
                                     className={`icon-${
                                         el.weather[0].icon
@@ -45,8 +43,8 @@ function Icon({ forecast }) {
                                 <p className="time">
                                     {api.handleDate(el.dt_txt).time}
                                 </p>
-                            </li>
-                        </Link>
+                            </Link>
+                        </li>
                     ))}
             </ul>
         </div>
@@ -80,13 +78,13 @@ class Forecast extends React.Component {
     componentDidMount() {
         const city = this.props.location.search;
         api.memoized(this.cleanCityString(city)).then(data =>
-            this.setState({ city: city, forecast: data })
+            this.setState({city: city, forecast: data})
         );
     }
 
     componentDidUpdate() {
         const {
-            location: { search }
+            location: {search}
         } = this.props;
 
         if (search === this.state.city) {
@@ -94,7 +92,7 @@ class Forecast extends React.Component {
         }
         const city = search;
         api.memoized(this.cleanCityString(city)).then(data =>
-            this.setState({ city: city, forecast: data })
+            this.setState({city: city, forecast: data})
         );
     }
 

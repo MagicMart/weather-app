@@ -1,13 +1,10 @@
 import React from "react";
 
-import LocationInput from "./LocationInput";
+// import LocationInput from "./LocationInput";
 
 function Home() {
     return (
-        <div className="weather-container">
-            <div className="home-input">
-                <LocationInput />
-            </div>
+        <div role="main" className="weather-container">
             <div className="message">
                 <p className="example">
                     Example input: <kbd>london,gb</kbd>

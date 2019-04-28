@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class LocationInput extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class LocationInput extends React.Component {
 
     handleChange(e) {
         const city = e.target.value;
-        this.checkInput(city) && this.setState({ city });
+        this.checkInput(city) && this.setState({city});
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -38,9 +38,6 @@ class LocationInput extends React.Component {
         return (
             <>
                 <form className="column" onSubmit={this.handleSubmit}>
-                    <label hidden={true} htmlFor="city">
-                        Enter City:
-                    </label>
                     <input
                         type="text"
                         id="city"
@@ -49,6 +46,7 @@ class LocationInput extends React.Component {
                         onChange={this.handleChange}
                         autoComplete="off"
                         placeholder="Enter City..."
+                        aria-label="Enter city"
                     />
                     <Link
                         role="button"
@@ -60,8 +58,10 @@ class LocationInput extends React.Component {
                     >
                         <button
                             type="submit"
+                            id="getWeather"
                             disabled={!this.state.city}
                             className="button"
+                            aria-label="Get Weather"
                         >
                             Get Weather
                         </button>

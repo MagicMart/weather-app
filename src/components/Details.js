@@ -2,15 +2,15 @@ import React from "react";
 import api from "../utils/api";
 import PropTypes from "prop-types";
 
-function DetailDisplay({ name, country, details }) {
+function DetailDisplay({name, country, details}) {
     const {
         dt_txt,
-        main: { humidity, temp_max, temp_min },
-        weather: [{ description, icon }],
-        wind: { deg, speed }
+        main: {humidity, temp_max, temp_min},
+        weather: [{description, icon}],
+        wind: {deg, speed}
     } = details;
     return (
-        <div className="weather-container">
+        <div role="main" className="weather-container">
             <div className="detail-header">
                 <div>
                     <h2>{`${name}, ${country} `}</h2>
@@ -83,10 +83,10 @@ class Details extends React.Component {
             return this.props.history.goBack();
         }
         const {
-            query: { details, name, country }
+            query: {details, name, country}
         } = this.props.location;
 
-        details && this.setState({ details, name, country });
+        details && this.setState({details, name, country});
     }
 
     render() {
