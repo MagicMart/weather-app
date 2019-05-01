@@ -4,14 +4,16 @@ import loadable from "@loadable/component";
 import Header from "./Header";
 import Home from "./Home";
 
+function Loading(props) {
+    return <h2 className="weather-container">Loading</h2>;
+}
+
 const Forecast = loadable(() => import("./Forecast"), {
-    fallback: <h2>Loading</h2>
+    fallback: <Loading />
 });
 const Details = loadable(() => import("./Details"), {
-    fallback: <h2>Loading</h2>
+    fallback: <Loading />
 });
-
-// import Details from "./Details";
 
 function App() {
     return (

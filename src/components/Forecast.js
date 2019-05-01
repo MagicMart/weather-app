@@ -105,7 +105,7 @@ class Forecast extends React.Component {
                         forecast={this.state.forecast}
                     />
                 ) : (
-                    <p className="weather-container">Loading</p>
+                    <h2 className="weather-container">Loading</h2>
                 )}
             </>
         );
