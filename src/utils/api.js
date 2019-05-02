@@ -1,7 +1,7 @@
 import axios from "axios";
 import memoize from "memoizee";
 
-const APIkey = process.APIkey;
+const APIkey = "YOUR API KEY HERE";
 
 function handleError(error) {
     // eslint-disable-next-line no-console
