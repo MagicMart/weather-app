@@ -1,3 +1,4 @@
 node_modules
 dist
 .netlify
+src/utils/key.js
