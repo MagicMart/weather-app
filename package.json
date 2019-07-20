@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode development --open",
-        "build": "npm run key && webpack --mode production",
+        "build": "npm run key && webpack --mode production && npm run redirects",
+        "redirects": "cp _redirects dist/_redirects",
         "key": "echo 'export const APIKEY'=$APIKEY > ./src/utils/key.js"
     },
     "keywords": [
