@@ -1,6 +1,6 @@
 import axios from "axios";
 import memoize from "memoizee";
-import {APIKEY} from "./key";
+import {APIKEY} from "./key.js";
 
 function handleError(error) {
     // eslint-disable-next-line no-console
