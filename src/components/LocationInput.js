@@ -10,6 +10,7 @@ class LocationInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.checkInput = this.checkInput.bind(this);
         this.cleanString = this.cleanString.bind(this);
+        this.emptyTextInput = this.emptyTextInput.bind(this);
     }
 
     cleanString(str) {
@@ -33,6 +34,9 @@ class LocationInput extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
     }
+    emptyTextInput() {
+        this.setState({city: ""});
+    }
 
     render() {
         return (
@@ -49,6 +53,7 @@ class LocationInput extends React.Component {
                         aria-label="Enter city"
                     />
                     <Link
+                        onClick={this.emptyTextInput}
                         role="button"
                         disabled={!this.state.city}
                         to={{
