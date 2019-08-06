@@ -100,7 +100,7 @@ tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-th {
+th[scope="col"] {
     background-color: #006400;
     color: white;
 }
@@ -145,6 +145,10 @@ th {
 
 .button:hover {
     cursor: pointer;
+}
+
+caption {
+    width: fit-content;
 }
 
 @media screen and (max-width: 600px) {

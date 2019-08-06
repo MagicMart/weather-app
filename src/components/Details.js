@@ -17,45 +17,45 @@ function DetailDisplay({name, country, details}) {
                 </div>
                 <div className={`icon-detail icon-${icon}`} />
             </div>
-
-            <table tabIndex="0">
+            <table>
+                <caption>Forecast</caption>
                 <thead>
                     <tr>
-                        <th>Detail</th>
-                        <th>Value</th>
+                        <th scope="col">Detail</th>
+                        <th scope="col">Value</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Day</td>
+                        <th scope="row">Day</th>
                         <td>{api.handleDate(dt_txt).day}</td>
                     </tr>
                     <tr>
-                        <td>Time</td>
+                        <th scope="row">Time</th>
                         <td>{api.handleDate(dt_txt).time}</td>
                     </tr>
                     <tr>
-                        <td>Description</td>
+                        <th scope="row">Description</th>
                         <td>{description}</td>
                     </tr>
                     <tr>
-                        <td>Max Temp</td>
+                        <th scope="row">Max Temp</th>
                         <td>{temp_max} &deg;C</td>
                     </tr>
                     <tr>
-                        <td>Min Temp</td>
+                        <th scope="row">Min Temp</th>
                         <td>{temp_min} &deg;C</td>
                     </tr>
                     <tr>
-                        <td>Humidity</td>
+                        <th scope="row">Humidity</th>
                         <td>{humidity}</td>
                     </tr>
                     <tr>
-                        <td>Wind</td>
+                        <th scope="row">Wind</th>
                         <td>{speed}</td>
                     </tr>
                     <tr>
-                        <td>Degree</td>
+                        <th scope="row">Degree</th>
                         <td>{deg}</td>
                     </tr>
                 </tbody>
