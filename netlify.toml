@@ -4,3 +4,8 @@
   
 [context.deploy-preview]
   command = "npm run dev"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
