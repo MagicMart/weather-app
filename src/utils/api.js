@@ -32,12 +32,9 @@ function fetchFiveDay(city) {
 
 function handleDate(str) {
     const date = new Date(str);
-    const arr = date.toString().split(" ");
-    const day = arr.slice(0, 3).join(" ");
-    const time = arr[4]
-        .split(":")
-        .slice(0, 2)
-        .join(":");
+    const day = date.toDateString().slice(0, 10);
+    const time = date.toTimeString().slice(0, 5);
+
     return {day, time};
 }
 
