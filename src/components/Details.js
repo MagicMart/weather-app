@@ -70,40 +70,25 @@ DetailDisplay.propTypes = {
     details: PropTypes.object.isRequired
 };
 
-class Details extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            details: null
-        };
+function Details({location: {state}, history}) {
+    const forecastDetails = state;
+
+    if (!forecastDetails) {
+        history.push("/");
     }
 
-    componentDidMount() {
-        if (!this.props.location.state) {
-            return this.props.history.goBack();
-        }
-        const {
-            state: {details, name, country}
-        } = this.props.location;
-
-        details && this.setState({details, name, country});
-    }
-
-    render() {
-        return (
-            <>
-                {this.state.details ? (
-                    <DetailDisplay
-                        name={this.state.name}
-                        country={this.state.country}
-                        details={this.state.details}
-                    />
-                ) : (
-                    <div className="weather-container" />
-                )}
-            </>
-        );
-    }
+    return (
+        <>
+            {forecastDetails && (
+                <DetailDisplay
+                    name={forecastDetails.name}
+                    country={forecastDetails.country}
+                    details={forecastDetails.details}
+                />
+            )}
+            {!forecastDetails && <div className="weather-container" />}
+        </>
+    );
 }
 
 Details.propTypes = {

@@ -30,7 +30,13 @@ function App() {
                         path="/details"
                         render={props => <Details {...props} />}
                     />
-                    <Route render={() => <p>Not Found</p>} />
+                    <Route
+                        render={() => (
+                            <h2 className="weather-container">
+                                Page Not Found
+                            </h2>
+                        )}
+                    />
                 </Switch>
             </div>
         </Router>
