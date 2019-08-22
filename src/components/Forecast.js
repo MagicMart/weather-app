@@ -21,7 +21,7 @@ function Icon({forecast}) {
                             <Link
                                 to={{
                                     pathname: `/details/${name}`,
-                                    query: {
+                                    state: {
                                         name: name,
                                         country: country,
                                         details: el

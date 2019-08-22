@@ -79,11 +79,11 @@ class Details extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.location.query) {
+        if (!this.props.location.state) {
             return this.props.history.goBack();
         }
         const {
-            query: {details, name, country}
+            state: {details, name, country}
         } = this.props.location;
 
         details && this.setState({details, name, country});
