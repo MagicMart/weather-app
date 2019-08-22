@@ -1,5 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+import {withRouter} from "react-router-dom";
 
 class LocationInput extends React.Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class LocationInput extends React.Component {
     }
 
     render() {
+      
         return (
             <>
                 <form className="column" onSubmit={this.handleSubmit}>
@@ -52,29 +54,33 @@ class LocationInput extends React.Component {
                         placeholder="Enter City..."
                         aria-label="Enter city"
                     />
-                    <Link
-                        onClick={this.emptyTextInput}
-                        role="button"
+
+                    <button
+                        onClick={() =>
+                            this.props.history.push({
+                                pathname: "/forecast",
+                                search: `?=${this.cleanString(this.state.city)}`
+                            })
+                        }
+                        type="submit"
+                        id="getWeather"
                         disabled={!this.state.city}
-                        to={{
-                            pathname: "/forecast",
-                            search: `?=${this.cleanString(this.state.city)}`
-                        }}
+                        className="button"
+                        aria-label="Get Weather"
                     >
-                        <button
-                            type="submit"
-                            id="getWeather"
-                            disabled={!this.state.city}
-                            className="button"
-                            aria-label="Get Weather"
-                        >
-                            Get Weather
-                        </button>
-                    </Link>
+                        Get Weather
+                    </button>
                 </form>
             </>
         );
     }
 }
 
-export default LocationInput;
+LocationInput.propTypes = {
+    history: PropTypes.object.isRequired,
+    push: PropTypes.func
+};
+
+const LocationInputWithRouter = withRouter(LocationInput);
+
+export default LocationInputWithRouter;
