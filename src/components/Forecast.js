@@ -67,6 +67,9 @@ class Forecast extends React.Component {
     }
 
     cleanCityString(str) {
+        if (!str) {
+            return;
+        }
         return str
             .replace("%20", " ")
             .split("=")[1]
