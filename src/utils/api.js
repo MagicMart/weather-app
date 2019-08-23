@@ -5,7 +5,7 @@ import {APIKEY} from "./key.js";
 function handleError(error) {
     // eslint-disable-next-line no-console
     console.warn(error);
-    return null;
+    return error.response;
 }
 
 function fetchForecast(city) {

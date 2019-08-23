@@ -97,15 +97,18 @@ class Forecast extends React.Component {
     }
 
     render() {
+        if (!this.state.forecast) {
+            return <h2 className="weather-container">Loading</h2>;
+        }
         return (
             <>
-                {this.state.forecast ? (
+                {this.state.forecast.status === undefined ? (
                     <Icon
                         cleanCityString={this.cleanCityString}
                         forecast={this.state.forecast}
                     />
                 ) : (
-                    <h2 className="weather-container">Loading</h2>
+                    <h2 className="weather-container">Not Found</h2>
                 )}
             </>
         );
