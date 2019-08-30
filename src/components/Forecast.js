@@ -29,9 +29,7 @@ function Icon({forecast}) {
                                 }}
                             >
                                 <div
-                                    className={`icon-${
-                                        el.weather[0].icon
-                                    } icon`}
+                                    className={`icon-${el.weather[0].icon} icon`}
                                 />
                                 <p className="day">
                                     {api.handleDate(el.dt_txt).day}
@@ -55,18 +53,10 @@ Icon.propTypes = {
     forecast: PropTypes.object.isRequired
 };
 
-class Forecast extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            city: "",
-            forecast: null
-        };
+function Forecast(props) {
+    const [forecast, setForecast] = React.useState(null);
 
-        this.cleanCityString = this.cleanCityString.bind(this);
-    }
-
-    cleanCityString(str) {
+    const cleanCityString = str => {
         if (!str) {
             return;
         }
@@ -76,46 +66,28 @@ class Forecast extends React.Component {
             .split(" ")
             .filter(el => el !== "")
             .join(" ");
-    }
+    };
 
-    componentDidMount() {
-        const city = this.props.location.search;
-        api.memoized(this.cleanCityString(city)).then(data =>
-            this.setState({city: city, forecast: data})
-        );
-    }
+    React.useEffect(() => {
+        const {search} = props.location;
+        api.memoized(cleanCityString(search)).then(data => {
+            setForecast(data);
+        });
+        return () => setForecast(null);
+    }, [props.location]);
 
-    componentDidUpdate() {
-        const {
-            location: {search}
-        } = this.props;
-
-        if (search === this.state.city) {
-            return;
-        }
-        const city = search;
-        api.memoized(this.cleanCityString(city)).then(data =>
-            this.setState({city: city, forecast: data})
-        );
+    if (!forecast) {
+        return <h2 className="weather-container">Loading</h2>;
     }
-
-    render() {
-        if (!this.state.forecast) {
-            return <h2 className="weather-container">Loading</h2>;
-        }
-        return (
-            <>
-                {this.state.forecast.status === undefined ? (
-                    <Icon
-                        cleanCityString={this.cleanCityString}
-                        forecast={this.state.forecast}
-                    />
-                ) : (
-                    <h2 className="weather-container">Not Found</h2>
-                )}
-            </>
-        );
-    }
+    return (
+        <>
+            {forecast.status === undefined ? (
+                <Icon cleanCityString={cleanCityString} forecast={forecast} />
+            ) : (
+                <h2 className="weather-container">Not Found</h2>
+            )}
+        </>
+    );
 }
 
 Forecast.propTypes = {
