@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../utils/api";
+import {handleDate} from "../utils/helpers";
 import PropTypes from "prop-types";
 
 function DetailDisplay({name, country, details}) {
@@ -28,11 +28,11 @@ function DetailDisplay({name, country, details}) {
                 <tbody>
                     <tr>
                         <th scope="row">Day</th>
-                        <td>{api.handleDate(dt_txt).day}</td>
+                        <td>{handleDate(dt_txt).day}</td>
                     </tr>
                     <tr>
                         <th scope="row">Time</th>
-                        <td>{api.handleDate(dt_txt).time}</td>
+                        <td>{handleDate(dt_txt).time}</td>
                     </tr>
                     <tr>
                         <th scope="row">Description</th>

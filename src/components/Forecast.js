@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-
 import api from "../utils/api";
+import {handleDate, cleanCityString} from "../utils/helpers";
 
 function Icon({forecast}) {
     const {
@@ -32,14 +32,14 @@ function Icon({forecast}) {
                                     className={`icon-${el.weather[0].icon} icon`}
                                 />
                                 <p className="day">
-                                    {api.handleDate(el.dt_txt).day}
+                                    {handleDate(el.dt_txt).day}
                                 </p>
                                 <p className="description">
                                     <em>{el.weather[0].description}</em>
                                 </p>
 
                                 <p className="time">
-                                    {api.handleDate(el.dt_txt).time}
+                                    {handleDate(el.dt_txt).time}
                                 </p>
                             </Link>
                         </li>
@@ -55,18 +55,6 @@ Icon.propTypes = {
 
 function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
-
-    const cleanCityString = str => {
-        if (!str) {
-            return;
-        }
-        return str
-            .replace("%20", " ")
-            .split("=")[1]
-            .split(" ")
-            .filter(el => el !== "")
-            .join(" ");
-    };
 
     React.useEffect(() => {
         const {search} = props.location;

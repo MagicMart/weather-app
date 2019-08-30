@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
+import {cleanString} from "../utils/helpers";
 
 class LocationInput extends React.Component {
     constructor(props) {
@@ -10,16 +11,7 @@ class LocationInput extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.checkInput = this.checkInput.bind(this);
-        this.cleanString = this.cleanString.bind(this);
         this.emptyTextInput = this.emptyTextInput.bind(this);
-    }
-
-    cleanString(str) {
-        return str
-            .trim()
-            .split(" ")
-            .filter(el => el !== "")
-            .join(" ");
     }
 
     checkInput(str) {
@@ -40,7 +32,6 @@ class LocationInput extends React.Component {
     }
 
     render() {
-      
         return (
             <>
                 <form className="column" onSubmit={this.handleSubmit}>
@@ -59,7 +50,7 @@ class LocationInput extends React.Component {
                         onClick={() =>
                             this.props.history.push({
                                 pathname: "/forecast",
-                                search: `?=${this.cleanString(this.state.city)}`
+                                search: `?=${cleanString(this.state.city)}`
                             })
                         }
                         type="submit"
