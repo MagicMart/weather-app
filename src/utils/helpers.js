@@ -14,9 +14,5 @@ export function cleanSearchString(str) {
 }
 
 export function removeExtraSpace(str) {
-    return str
-        .trim()
-        .split(" ")
-        .filter(el => el !== "")
-        .join(" ");
+    return str.trim().replace(/\s\s+/g, " ");
 }
