@@ -13,6 +13,7 @@ body {
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol";
     margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -78,6 +79,7 @@ li {
 
 a {
     text-decoration: none;
+    color: #3f3d3d;
 }
 
 a:hover,
