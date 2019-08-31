@@ -76,12 +76,13 @@ li {
     transition: transform 0.2s;
 }
 
-li:hover {
-    transform: scale(1.1);
-}
-
 a {
     text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    transform: scale(1.1);
 }
 
 table {
