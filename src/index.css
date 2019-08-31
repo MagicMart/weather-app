@@ -61,7 +61,7 @@ input[type="text"] {
 ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     list-style-type: none;
     padding: 0;
     margin: 0;
