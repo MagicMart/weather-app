@@ -6,19 +6,14 @@ export function handleDate(str) {
     return {day, time};
 }
 
-export function cleanCityString(str) {
+export function cleanSearchString(str) {
     if (!str) {
         return;
     }
-    return str
-        .replace("%20", " ")
-        .split("=")[1]
-        .split(" ")
-        .filter(el => el !== "")
-        .join(" ");
+    return str.replace(/\?=/, "");
 }
 
-export function cleanString(str) {
+export function removeExtraSpace(str) {
     return str
         .trim()
         .split(" ")

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {cleanString} from "../utils/helpers";
+import {removeExtraSpace} from "../utils/helpers";
 
 class LocationInput extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ class LocationInput extends React.Component {
                         onClick={() =>
                             this.props.history.push({
                                 pathname: "/forecast",
-                                search: `?=${cleanString(this.state.city)}`
+                                search: `?=${removeExtraSpace(this.state.city)}`
                             })
                         }
                         type="submit"

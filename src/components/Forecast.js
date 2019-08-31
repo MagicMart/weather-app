@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import api from "../utils/api";
-import {handleDate, cleanCityString} from "../utils/helpers";
+import {handleDate, cleanSearchString} from "../utils/helpers";
 
 function Icon({forecast}) {
     const {
@@ -58,7 +58,7 @@ function Forecast(props) {
 
     React.useEffect(() => {
         const {search} = props.location;
-        api.memoized(cleanCityString(search)).then(data => {
+        api.memoized(cleanSearchString(search)).then(data => {
             setForecast(data);
         });
         return () => setForecast(null);
@@ -70,7 +70,10 @@ function Forecast(props) {
     return (
         <>
             {forecast.status === undefined ? (
-                <Icon cleanCityString={cleanCityString} forecast={forecast} />
+                <Icon
+                    cleanSearchString={cleanSearchString}
+                    forecast={forecast}
+                />
             ) : (
                 <h2 className="weather-container">Not Found</h2>
             )}
