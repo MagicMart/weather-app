@@ -3,68 +3,55 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {removeExtraSpace} from "../utils/helpers";
 
-class LocationInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            city: ""
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.checkInput = this.checkInput.bind(this);
-        this.emptyTextInput = this.emptyTextInput.bind(this);
-    }
+function LocationInput({history}) {
+    const [city, setCity] = React.useState("");
 
-    checkInput(str) {
-        const city = str.toLowerCase().split("");
+    const checkInput = str => {
+        const input = str.toLowerCase().split("");
         const acceptedChars = " abcdefghijklmnopqrstuvwxyz,-";
-        return city.every(letter => acceptedChars.includes(letter));
-    }
+        return input.every(letter => acceptedChars.includes(letter));
+    };
 
-    handleChange(e) {
-        const city = e.target.value;
-        this.checkInput(city) && this.setState({city});
-    }
-    handleSubmit(e) {
+    const handleChange = e => {
+        const input = e.target.value;
+        checkInput(input) && setCity(input);
+    };
+    const handleSubmit = e => {
         e.preventDefault();
-    }
-    emptyTextInput() {
-        this.setState({city: ""});
-    }
+    };
 
-    render() {
-        return (
-            <>
-                <form className="column" onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        id="city"
-                        name="city"
-                        value={this.state.city}
-                        onChange={this.handleChange}
-                        autoComplete="off"
-                        placeholder="Enter City..."
-                        aria-label="Enter city"
-                    />
+    return (
+        <>
+            <form className="column" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={city}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    placeholder="Enter City..."
+                    aria-label="Enter city"
+                />
 
-                    <button
-                        onClick={() =>
-                            this.props.history.push({
-                                pathname: "/forecast",
-                                search: `?=${removeExtraSpace(this.state.city)}`
-                            })
-                        }
-                        type="submit"
-                        id="getWeather"
-                        disabled={!this.state.city}
-                        className="button"
-                        aria-label="Get Weather"
-                    >
-                        Get Weather
-                    </button>
-                </form>
-            </>
-        );
-    }
+                <button
+                    onClick={() =>
+                        history.push({
+                            pathname: "/forecast",
+                            search: `?=${removeExtraSpace(city)}`
+                        })
+                    }
+                    type="submit"
+                    id="getWeather"
+                    disabled={!city}
+                    className="button"
+                    aria-label="Get Weather"
+                >
+                    Get Weather
+                </button>
+            </form>
+        </>
+    );
 }
 
 LocationInput.propTypes = {
