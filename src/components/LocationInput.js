@@ -34,7 +34,7 @@ function LocationInput({history}) {
                     aria-label="Enter city"
                 />
 
-                <button
+                <input
                     onClick={() =>
                         history.push({
                             pathname: "/forecast",
@@ -46,9 +46,8 @@ function LocationInput({history}) {
                     disabled={!city}
                     className="button"
                     aria-label="Get Weather"
-                >
-                    Get Weather
-                </button>
+                    value="Get Weather"
+                />
             </form>
         </>
     );
