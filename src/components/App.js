@@ -18,27 +18,29 @@ const Details = loadable(() => import("./Details"), {
 function App() {
     return (
         <Router>
-            <div className="container">
+            <React.Fragment>
                 <Header />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route
-                        path="/forecast"
-                        render={props => <Forecast {...props} />}
-                    />
-                    <Route
-                        path="/details"
-                        render={props => <Details {...props} />}
-                    />
-                    <Route
-                        render={() => (
-                            <h2 className="weather-container">
-                                Page Not Found
-                            </h2>
-                        )}
-                    />
-                </Switch>
-            </div>
+                <div className="container">
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route
+                            path="/forecast"
+                            render={props => <Forecast {...props} />}
+                        />
+                        <Route
+                            path="/details"
+                            render={props => <Details {...props} />}
+                        />
+                        <Route
+                            render={() => (
+                                <h2 className="weather-container">
+                                    Page Not Found
+                                </h2>
+                            )}
+                        />
+                    </Switch>
+                </div>
+            </React.Fragment>
         </Router>
     );
 }
