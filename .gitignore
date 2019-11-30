@@ -3,3 +3,4 @@ dist
 .netlify
 src/utils/key.js
 .vscode
+.idea
