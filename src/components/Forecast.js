@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../utils/api";
-import {handleDate, cleanSearchString} from "../utils/helpers";
+import { handleDate, cleanSearchString } from "../utils/helpers";
 
-function Icon({forecast}) {
+function Icon({ forecast }) {
     const {
-        city: {name, country},
-        list
+        city: { name, country },
+        list,
     } = forecast;
     return (
         <div role="main" className="weather-container">
@@ -24,9 +24,9 @@ function Icon({forecast}) {
                                     state: {
                                         name: name,
                                         country: country,
-                                        details: el
+                                        details: el,
                                     },
-                                    search: `=${name},${country}`
+                                    search: `=${name},${country}`,
                                 }}
                             >
                                 <div
@@ -51,14 +51,14 @@ function Icon({forecast}) {
 }
 
 Icon.propTypes = {
-    forecast: PropTypes.object.isRequired
+    forecast: PropTypes.object.isRequired,
 };
 
 function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
 
     React.useEffect(() => {
-        const {search} = props.location;
+        const { search } = props.location;
         api.memoized(cleanSearchString(search)).then(data => {
             setForecast(data);
         });
@@ -83,7 +83,7 @@ function Forecast(props) {
 }
 
 Forecast.propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
 };
 
 export default Forecast;
