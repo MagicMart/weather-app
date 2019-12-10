@@ -20,12 +20,13 @@ function Icon({forecast}) {
                         <li key={el + i}>
                             <Link
                                 to={{
-                                    pathname: `/details/${name}`,
+                                    pathname: "/details",
                                     state: {
                                         name: name,
                                         country: country,
                                         details: el
-                                    }
+                                    },
+                                    search: `=${name},${country}`
                                 }}
                             >
                                 <div
