@@ -1,13 +1,13 @@
 import React from "react";
-import {handleDate} from "../utils/helpers";
+import { handleDate } from "../utils/helpers";
 import PropTypes from "prop-types";
 
-function DetailDisplay({name, country, details}) {
+function DetailDisplay({ name, country, details }) {
     const {
         dt_txt,
-        main: {humidity, temp_max, temp_min},
-        weather: [{description, icon}],
-        wind: {deg, speed}
+        main: { humidity, temp_max, temp_min },
+        weather: [{ description, icon }],
+        wind: { deg, speed },
     } = details;
     return (
         <div role="main" className="weather-container">
@@ -21,7 +21,7 @@ function DetailDisplay({name, country, details}) {
                 <caption>Forecast</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Detail</th>
+                        <th scope="col">Field</th>
                         <th scope="col">Value</th>
                     </tr>
                 </thead>
@@ -67,20 +67,19 @@ function DetailDisplay({name, country, details}) {
 DetailDisplay.propTypes = {
     name: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
-    details: PropTypes.object.isRequired
+    details: PropTypes.object.isRequired,
 };
 
-function Details({location: {state}, history}) {
+function Details({ location: { state }, history }) {
     const forecastDetails = state;
 
     if (!forecastDetails) {
         if (location.search) {
             history.push(`/forecast${location.search}`);
-        }
-        else {
+        } else {
             history.push("/");
-        }    
-    } 
+        }
+    }
 
     return (
         <>
@@ -98,7 +97,7 @@ function Details({location: {state}, history}) {
 
 Details.propTypes = {
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
 };
 
 export default Details;
