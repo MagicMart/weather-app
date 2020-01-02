@@ -27,7 +27,7 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new CopyPlugin([{ from: "_redirects" }]),
+        new CopyPlugin([{ from: "_redirects" }, { from: ".env" }]),
         new HtmlWebpackPlugin({
             template: "src/index.html",
         }),

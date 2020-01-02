@@ -6,8 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode development --open",
-        "build": "webpack --mode production",
-        "postbuild": "echo 'APIKEY'=$APIKEY > ./dist/.env"
+        "prebuild": "echo 'APIKEY'=$APIKEY > ./.env",
+        "build": "webpack --mode production"
     },
     "keywords": [
         "Weather",
