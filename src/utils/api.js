@@ -1,7 +1,13 @@
 import axios from "axios";
 import memoize from "memoizee";
 
-const APIKEY = process.env.API_KEY;
+let APIKEY;
+
+if (process.env.NODE_ENV === "production") {
+    APIKEY = process.env.API_KEY;
+} else {
+    APIKEY = process.env.API_KEY_DEV;
+}
 
 function handleError(error) {
     // eslint-disable-next-line no-console
