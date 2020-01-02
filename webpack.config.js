@@ -27,10 +27,10 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
+        new CopyPlugin([{ from: "_redirects" }, { from: ".env" }]),
         new HtmlWebpackPlugin({
             template: "src/index.html",
         }),
         new Dotenv(),
-        new CopyPlugin([{ from: "_redirects" }, { from: ".env" }]),
     ],
 };
