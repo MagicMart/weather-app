@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
@@ -27,10 +26,9 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new CopyPlugin([{ from: "_redirects" }, { from: ".env" }]),
+        new CopyPlugin([{ from: "_redirects" }]),
         new HtmlWebpackPlugin({
             template: "src/index.html",
         }),
-        new Dotenv(),
     ],
 };

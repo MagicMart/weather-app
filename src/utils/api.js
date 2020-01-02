@@ -1,7 +1,8 @@
 import axios from "axios";
 import memoize from "memoizee";
+import { APIKEY } from "./key";
 
-const APIKEY = process.env.API_KEY;
+const API_KEY = APIKEY;
 
 function handleError(error) {
     // eslint-disable-next-line no-console
@@ -11,7 +12,7 @@ function handleError(error) {
 
 function fetchForecast(city) {
     const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`
     );
     return axios.get(url).then(function(response) {
         return response.data;
@@ -20,7 +21,7 @@ function fetchForecast(city) {
 
 function fetchFiveDay(city) {
     const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${APIKEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${API_KEY}`
     );
 
     return axios

@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode development --open",
-        "prebuild": "echo 'APIKEY'=$APIKEY > ./.env",
+        "prebuild": "echo 'export const APIKEY'=$APIKEY > ./src/utils/key.js",
         "build": "webpack --mode production"
     },
     "keywords": [
@@ -36,7 +36,6 @@
     "dependencies": {
         "@loadable/component": "^5.9.0",
         "axios": "^0.19.0",
-        "dotenv-webpack": "^1.7.0",
         "memoizee": "^0.4.14",
         "react": "^16.8.2",
         "react-dom": "^16.8.2",
