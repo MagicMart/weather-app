@@ -4,4 +4,4 @@ dist
 src/utils/key.js
 .vscode
 .idea
-.env.dev
+.env
