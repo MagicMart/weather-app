@@ -1,12 +1,13 @@
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
     entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
-        publicPath: "/"
+        publicPath: "/",
     },
     module: {
         rules: [
@@ -16,17 +17,18 @@ module.exports = {
                 test: /\.svg/,
                 use: {
                     loader: "svg-url-loader",
-                    options: {}
-                }
-            }
-        ]
+                    options: {},
+                },
+            },
+        ],
     },
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "src/index.html"
-        })
-    ]
+            template: "src/index.html",
+        }),
+        new Dotenv(),
+    ],
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import memoize from "memoizee";
-import {APIKEY} from "./key.js";
+
+const APIKEY = process.env.API_KEY;
 
 function handleError(error) {
     // eslint-disable-next-line no-console
@@ -30,9 +31,9 @@ function fetchFiveDay(city) {
         .catch(handleError);
 }
 
-const memoized = memoize(fetchFiveDay, {maxAge: 600000});
+const memoized = memoize(fetchFiveDay, { maxAge: 600000 });
 
 export default {
     fetchForecast,
-    memoized
+    memoized,
 };
