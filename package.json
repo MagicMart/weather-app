@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode development --open",
-        "prebuild": "echo 'export const APIKEY'=$APIKEY > ./src/utils/key.js",
+        "prebuild": "echo 'export const API_KEY'=$APIKEY > ./src/utils/key.js",
         "build": "webpack --mode production"
     },
     "keywords": [
