@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import api from "../utils/api";
+import { fiveDayForecast } from "../utils/api";
 import { handleDate, cleanSearchString } from "../utils/helpers";
 
 function Icon({ forecast }) {
@@ -58,8 +58,8 @@ function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
 
     React.useEffect(() => {
-        const { search } = props.location;
-        api.memoized(cleanSearchString(search)).then(data => {
+        const { search: city } = props.location;
+        fiveDayForecast(cleanSearchString(city)).then(data => {
             setForecast(data);
         });
         return () => setForecast(null);

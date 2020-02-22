@@ -8,31 +8,27 @@ function handleError(error) {
     return error.response;
 }
 
-function fetchForecast(city) {
-    const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`
-    );
-    return axios.get(url).then(function(response) {
-        return response.data;
-    });
-}
+// function fetchForecast(city) {
+//     const url = window.encodeURI(
+//         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`
+//     );
+//     return axios.get(url).then(function(response) {
+//         return response.data;
+//     });
+// }
 
-function fetchFiveDay(city) {
-    const url = window.encodeURI(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${API_KEY}`
-    );
+export const fiveDayForecast = memoize(
+    function fetchFiveDay(city) {
+        const url = window.encodeURI(
+            `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${API_KEY}`
+        );
 
-    return axios
-        .get(url)
-        .then(function(response) {
-            return response.data;
-        })
-        .catch(handleError);
-}
-
-const memoized = memoize(fetchFiveDay, { maxAge: 600000 });
-
-export default {
-    fetchForecast,
-    memoized,
-};
+        return axios
+            .get(url)
+            .then(function(response) {
+                return response.data;
+            })
+            .catch(handleError);
+    },
+    { maxAge: 600000 }
+);
