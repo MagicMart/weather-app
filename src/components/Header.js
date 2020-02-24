@@ -5,7 +5,7 @@ function Header() {
     return (
         <header role="banner" className="header">
             <h1>
-                Weather App <span style={{fontSize: "32px"}}>&#127774;</span>
+                Weather App <span style={{ fontSize: "32px" }}>&#127774;</span>
             </h1>
             <LocationInput />
         </header>
