@@ -63,7 +63,7 @@ function Forecast(props) {
     React.useEffect(() => {
         const { city } = queryString.parse(location.search);
         if (city || coords.lat) {
-            fetchForecast(cleanSearchString(city) || coords).then(data => {
+            fetchForecast(city || coords).then(data => {
                 setForecast(data);
             });
         }
