@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { fetchForecast } from "../utils/api";
 import { handleDate, cleanSearchString } from "../utils/helpers";
+import queryString from "query-string";
 import useGeolocation from "./useGeolocation";
 
 function Icon({ forecast }) {
@@ -60,7 +61,7 @@ function Forecast(props) {
     const [coords] = useGeolocation();
 
     React.useEffect(() => {
-        const { search: city } = props.location;
+        const { city } = queryString.parse(location.search);
         if (city || coords.lat) {
             fetchForecast(cleanSearchString(city) || coords).then(data => {
                 setForecast(data);

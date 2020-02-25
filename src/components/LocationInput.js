@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
-import {removeExtraSpace} from "../utils/helpers";
+import { withRouter } from "react-router-dom";
+import { removeExtraSpace } from "../utils/helpers";
 
-function LocationInput({history}) {
+function LocationInput({ history }) {
     const [city, setCity] = React.useState("");
 
     const checkInput = str => {
@@ -38,7 +38,7 @@ function LocationInput({history}) {
                     onClick={() =>
                         history.push({
                             pathname: "/forecast",
-                            search: `?=${removeExtraSpace(city)}`
+                            search: `city=${removeExtraSpace(city)}`,
                         })
                     }
                     type="submit"
@@ -55,7 +55,7 @@ function LocationInput({history}) {
 
 LocationInput.propTypes = {
     history: PropTypes.object.isRequired,
-    push: PropTypes.func
+    push: PropTypes.func,
 };
 
 const LocationInputWithRouter = withRouter(LocationInput);
