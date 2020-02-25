@@ -24,17 +24,17 @@ function handleError(error) {
 // Examples of API calls:
 // api.openweathermap.org/data/2.5/forecast?lat=35&lon=139
 
-export const fiveDayForecast = memoize(
-    function fetchFiveDay({ city, coords }) {
-        const { lat, lng } = coords;
+const api = "https://api.openweathermap.org/data/2.5";
+export const fetchForecast = memoize(
+    function FiveDay(loc) {
         let url;
-        if (city) {
+        if (typeof loc === "object") {
             url = window.encodeURI(
-                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${API_KEY}`
+                `${api}/forecast?lat=${loc.lat}&lon=${loc.lng}&appid=${API_KEY}`
             );
         } else {
             url = window.encodeURI(
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${API_KEY}`
+                `${api}/forecast?q=${loc}&units=metric&APPID=${API_KEY}`
             );
         }
 

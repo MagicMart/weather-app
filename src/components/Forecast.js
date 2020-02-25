@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { fiveDayForecast } from "../utils/api";
+import { fetchForecast } from "../utils/api";
 import { handleDate, cleanSearchString } from "../utils/helpers";
 import useGeolocation from "./useGeolocation";
 
@@ -58,17 +58,15 @@ Icon.propTypes = {
 function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
     const [coords] = useGeolocation();
+    console.log("forecast", forecast);
 
     React.useEffect(() => {
         const { search: city } = props.location;
-        if (!city && coords.lat === null) {
-            return;
-        }
-        fiveDayForecast({ city: cleanSearchString(city), coords }).then(
-            data => {
-                setForecast(data);
-            }
-        );
+
+        fetchForecast(cleanSearchString(city) || coords).then(data => {
+            setForecast(data);
+        });
+
         return () => setForecast(null);
     }, [props.location, coords]);
 
