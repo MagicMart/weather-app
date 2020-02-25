@@ -58,14 +58,14 @@ Icon.propTypes = {
 function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
     const [coords] = useGeolocation();
-    console.log("forecast", forecast);
 
     React.useEffect(() => {
         const { search: city } = props.location;
-
-        fetchForecast(cleanSearchString(city) || coords).then(data => {
-            setForecast(data);
-        });
+        if (city || coords.lat) {
+            fetchForecast(cleanSearchString(city) || coords).then(data => {
+                setForecast(data);
+            });
+        }
 
         return () => setForecast(null);
     }, [props.location, coords]);
