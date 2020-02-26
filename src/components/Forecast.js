@@ -28,7 +28,7 @@ function Icon({ forecast }) {
                                         country: country,
                                         details: el,
                                     },
-                                    search: `=${name},${country}`,
+                                    search: `city=${name},${country}`,
                                 }}
                             >
                                 <div
