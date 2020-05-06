@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { fetchForecast } from "../utils/api";
+import api from "../utils/api";
 import { handleDate, cleanSearchString } from "../utils/helpers";
 import queryString from "query-string";
 import useGeolocation from "./useGeolocation";
@@ -63,7 +63,7 @@ function Forecast(props) {
     React.useEffect(() => {
         const { city } = queryString.parse(location.search);
         if (city || coords.lat) {
-            fetchForecast(city || coords).then(data => {
+            api.fetchForecast(city || coords).then(data => {
                 setForecast(data);
             });
         }
@@ -82,8 +82,8 @@ function Forecast(props) {
                     forecast={forecast}
                 />
             ) : (
-                <h2 className="weather-container">Not Found</h2>
-            )}
+                    <h2 className="weather-container">Not Found</h2>
+                )}
         </>
     );
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import memoize from "memoizee";
-import { API_KEY } from "./key";
+
+const API_KEY = process.env.APIKEY;
 
 function handleError(error) {
     // eslint-disable-next-line no-console
@@ -25,7 +26,8 @@ function handleError(error) {
 // api.openweathermap.org/data/2.5/forecast?lat=35&lon=139
 
 const api = "https://api.openweathermap.org/data/2.5";
-export const fetchForecast = memoize(
+
+const fetchForecast = memoize(
     function FiveDay(loc) {
         let url;
         if (typeof loc === "object") {
@@ -40,10 +42,14 @@ export const fetchForecast = memoize(
 
         return axios
             .get(url)
-            .then(function(response) {
+            .then(function (response) {
                 return response.data;
             })
             .catch(handleError);
     },
     { maxAge: 600000 }
 );
+
+export default {
+    fetchForecast
+}
