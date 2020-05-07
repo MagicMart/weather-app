@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { fetchForecast } from "../utils/api";
-import { handleDate, cleanSearchString } from "../utils/helpers";
+import { handleDate } from "../utils/helpers";
 import queryString from "query-string";
 
 function Icon({ forecast }) {
@@ -73,10 +73,7 @@ function Forecast(props) {
     return (
         <>
             {forecast.status === undefined ? (
-                <Icon
-                    cleanSearchString={cleanSearchString}
-                    forecast={forecast}
-                />
+                <Icon forecast={forecast} />
             ) : (
                 <h2 className="weather-container">Not Found</h2>
             )}
