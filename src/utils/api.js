@@ -27,20 +27,13 @@ function handleError(error) {
 const api = "https://api.openweathermap.org/data/2.5";
 export const fetchForecast = memoize(
     function FiveDay(loc) {
-        let url;
-        if (typeof loc === "object") {
-            url = window.encodeURI(
-                `${api}/forecast?lat=${loc.lat}&lon=${loc.lng}&appid=${API_KEY}`
-            );
-        } else {
-            url = window.encodeURI(
-                `${api}/forecast?q=${loc}&units=metric&APPID=${API_KEY}`
-            );
-        }
+        const url = window.encodeURI(
+            `${api}/forecast?lat=${loc.lat}&lon=${loc.lng}&appid=${API_KEY}`
+        );
 
         return axios
             .get(url)
-            .then(function(response) {
+            .then(function (response) {
                 return response.data;
             })
             .catch(handleError);
