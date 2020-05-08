@@ -13,8 +13,7 @@ function LocationInput({ history }) {
 
         dropdown.addListener("place_changed", () => {
             const place = dropdown.getPlace();
-
-            console.log("Place", place.formatted_address);
+            if (!place.formatted_address) return;
             lat.current = place.geometry.location.lat();
             lng.current = place.geometry.location.lng();
             setCity(place.formatted_address);
