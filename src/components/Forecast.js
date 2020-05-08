@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { fetchForecast } from "../utils/api";
+import api from "../utils/api";
 import { handleDate } from "../utils/helpers";
 import queryString from "query-string";
 
@@ -60,7 +60,7 @@ function Forecast(props) {
 
     React.useEffect(() => {
         const { lat, lng } = queryString.parse(location.search);
-        fetchForecast({ lat, lng }).then((data) => {
+        api.fetchForecast({ lat, lng }).then((data) => {
             setForecast(data);
         });
 
