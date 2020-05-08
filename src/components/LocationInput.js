@@ -1,22 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import { removeExtraSpace } from "../utils/helpers";
 
 function LocationInput({ history }) {
     const [city, setCity] = React.useState("");
+    const places = React.createRef();
+    const lat = React.useRef();
+    const lng = React.useRef();
 
-    const checkInput = str => {
-        const input = str.toLowerCase().split("");
-        const acceptedChars = " abcdefghijklmnopqrstuvwxyz,-";
-        return input.every(letter => acceptedChars.includes(letter));
-    };
+    React.useEffect(() => {
+        const dropdown = new google.maps.places.Autocomplete(places.current);
 
-    const handleChange = e => {
-        const input = e.target.value;
-        checkInput(input) && setCity(input);
-    };
-    const handleSubmit = e => {
+        dropdown.addListener("place_changed", () => {
+            const place = dropdown.getPlace();
+            if (!place.formatted_address) return;
+            lat.current = place.geometry.location.lat();
+            lng.current = place.geometry.location.lng();
+            setCity(place.formatted_address);
+        });
+    }, []);
+
+    const handleSubmit = (e) => {
+        history.push({
+            pathname: "/forecast",
+            search: `lat=${lat.current}&lng=${lng.current}`,
+        });
+        places.current.value = "";
         e.preventDefault();
     };
 
@@ -24,23 +33,16 @@ function LocationInput({ history }) {
         <>
             <form className="column" onSubmit={handleSubmit}>
                 <input
+                    ref={places}
                     type="text"
                     id="city"
                     name="city"
-                    value={city}
-                    onChange={handleChange}
                     autoComplete="off"
                     placeholder="Enter City..."
                     aria-label="Enter city"
                 />
 
                 <input
-                    onClick={() =>
-                        history.push({
-                            pathname: "/forecast",
-                            search: `city=${removeExtraSpace(city)}`,
-                        })
-                    }
                     type="submit"
                     id="getWeather"
                     disabled={!city}

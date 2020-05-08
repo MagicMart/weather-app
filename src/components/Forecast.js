@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { fetchForecast } from "../utils/api";
-import { handleDate, cleanSearchString } from "../utils/helpers";
+import { handleDate } from "../utils/helpers";
 import queryString from "query-string";
-import useGeolocation from "./useGeolocation";
 
 function Icon({ forecast }) {
     const {
@@ -58,18 +57,15 @@ Icon.propTypes = {
 
 function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
-    const [coords] = useGeolocation();
 
     React.useEffect(() => {
-        const { city } = queryString.parse(location.search);
-        if (city || coords.lat) {
-            fetchForecast(city || coords).then(data => {
-                setForecast(data);
-            });
-        }
+        const { lat, lng } = queryString.parse(location.search);
+        fetchForecast({ lat, lng }).then((data) => {
+            setForecast(data);
+        });
 
         return () => setForecast(null);
-    }, [props.location, coords]);
+    }, [props.location]);
 
     if (!forecast) {
         return <h2 className="weather-container">Loading</h2>;
@@ -77,10 +73,7 @@ function Forecast(props) {
     return (
         <>
             {forecast.status === undefined ? (
-                <Icon
-                    cleanSearchString={cleanSearchString}
-                    forecast={forecast}
-                />
+                <Icon forecast={forecast} />
             ) : (
                 <h2 className="weather-container">Not Found</h2>
             )}

@@ -6,7 +6,9 @@ function Home() {
     const [coords] = useGeolocation();
 
     if (coords.lat) {
-        return <Redirect to="/forecast" />;
+        return (
+            <Redirect to={`/forecast?lat=${coords.lat}&lng=${coords.lng}`} />
+        );
     }
 
     return (
