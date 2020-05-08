@@ -74,11 +74,10 @@ function Details({ location: { state }, history }) {
     const forecastDetails = state;
 
     if (!forecastDetails) {
-        if (location.search) {
-            history.push(`/forecast${location.search}`);
-        } else {
-            history.push("/");
-        }
+        // if (location.search) {
+        //     history.push(`/forecast${location.search}`);
+        // } else {
+        history.push("/");
     }
 
     return (
