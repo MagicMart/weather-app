@@ -25,7 +25,8 @@ function handleError(error) {
 // api.openweathermap.org/data/2.5/forecast?lat=35&lon=139
 
 const api = "https://api.openweathermap.org/data/2.5";
-export const fetchForecast = memoize(
+
+const fetchForecast = memoize(
     function FiveDay(loc) {
         const url = window.encodeURI(
             `${api}/forecast?lat=${loc.lat}&lon=${loc.lng}&appid=${API_KEY}`
@@ -40,3 +41,7 @@ export const fetchForecast = memoize(
     },
     { maxAge: 600000 }
 );
+
+export default {
+    fetchForecast,
+};
