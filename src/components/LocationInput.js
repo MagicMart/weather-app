@@ -5,12 +5,12 @@ import { withRouter } from "react-router-dom";
 function LocationInput({ history }) {
     const [city, setCity] = React.useState("");
     const buttonRef = React.useRef();
-    const placesRef = React.useRef();
+    const searchRef = React.useRef();
     const lat = React.useRef();
     const lng = React.useRef();
 
     React.useEffect(() => {
-        const dropdown = new google.maps.places.Autocomplete(placesRef.current);
+        const dropdown = new google.maps.places.Autocomplete(searchRef.current);
 
         dropdown.addListener("place_changed", () => {
             const place = dropdown.getPlace();
@@ -29,11 +29,11 @@ function LocationInput({ history }) {
             search: `lat=${lat.current}&lng=${lng.current}`,
         });
         // removes text input field
-        placesRef.current.value = "";
+        searchRef.current.value = "";
         lat.current = undefined;
         lng.current = undefined;
         setCity("");
-        placesRef.current.focus();
+        searchRef.current.focus();
         e.preventDefault();
     };
 
@@ -41,7 +41,7 @@ function LocationInput({ history }) {
         <>
             <form className="column" onSubmit={handleSubmit}>
                 <input
-                    ref={placesRef}
+                    ref={searchRef}
                     type="text"
                     id="city"
                     name="city"
