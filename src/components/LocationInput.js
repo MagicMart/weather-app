@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 function LocationInput({ history }) {
     const [city, setCity] = React.useState("");
-    const buttonRef = React.useRef();
+    const submitRef = React.useRef();
     const searchRef = React.useRef();
     const lat = React.useRef();
     const lng = React.useRef();
@@ -18,7 +18,7 @@ function LocationInput({ history }) {
             lat.current = place.geometry.location.lat();
             lng.current = place.geometry.location.lng();
             setCity(place.formatted_address);
-            buttonRef.current.focus()
+            submitRef.current.focus()
         });
     }, []);
 
@@ -51,7 +51,7 @@ function LocationInput({ history }) {
                 />
 
                 <input
-                    ref={buttonRef}
+                    ref={submitRef}
                     type="submit"
                     id="getWeather"
                     disabled={!city}
