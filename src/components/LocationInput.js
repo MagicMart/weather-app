@@ -4,12 +4,13 @@ import { withRouter } from "react-router-dom";
 
 function LocationInput({ history }) {
     const [city, setCity] = React.useState("");
-    const places = React.createRef();
+    const buttonRef = React.useRef();
+    const placesRef = React.useRef();
     const lat = React.useRef();
     const lng = React.useRef();
 
     React.useEffect(() => {
-        const dropdown = new google.maps.places.Autocomplete(places.current);
+        const dropdown = new google.maps.places.Autocomplete(placesRef.current);
 
         dropdown.addListener("place_changed", () => {
             const place = dropdown.getPlace();
@@ -17,15 +18,22 @@ function LocationInput({ history }) {
             lat.current = place.geometry.location.lat();
             lng.current = place.geometry.location.lng();
             setCity(place.formatted_address);
+            buttonRef.current.focus()
         });
     }, []);
 
     const handleSubmit = (e) => {
+        if (!city) return;
         history.push({
             pathname: "/forecast",
             search: `lat=${lat.current}&lng=${lng.current}`,
         });
-        places.current.value = "";
+        // removes text input field
+        placesRef.current.value = "";
+        lat.current = undefined;
+        lng.current = undefined;
+        setCity("");
+        placesRef.current.focus();
         e.preventDefault();
     };
 
@@ -33,7 +41,7 @@ function LocationInput({ history }) {
         <>
             <form className="column" onSubmit={handleSubmit}>
                 <input
-                    ref={places}
+                    ref={placesRef}
                     type="text"
                     id="city"
                     name="city"
@@ -43,6 +51,7 @@ function LocationInput({ history }) {
                 />
 
                 <input
+                    ref={buttonRef}
                     type="submit"
                     id="getWeather"
                     disabled={!city}
