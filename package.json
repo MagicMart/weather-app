@@ -36,7 +36,6 @@
     },
     "dependencies": {
         "@loadable/component": "^5.12.0",
-        "axios": "^0.19.2",
         "memoizee": "^0.4.14",
         "query-string": "^6.12.1",
         "react": "^16.13.1",
