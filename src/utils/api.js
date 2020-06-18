@@ -14,7 +14,7 @@ const fetchForecast = memoize(
         const url = `${api}/forecast?lat=${loc.lat}&lon=${loc.lng}&appid=${API_KEY}`;
 
         return fetch(url)
-            .then((res) => res.json)
+            .then((res) => res.json())
             .then((data) => data)
             .catch(handleError);
     },
