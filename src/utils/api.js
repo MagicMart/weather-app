@@ -11,7 +11,8 @@ const endpoint =
 
 const fetchForecast = memoize(
     function FiveDay(loc) {
-        const url = `${endpoint}lat=${loc.lat}&lng=${loc.lng}`;
+        const { lat, lng } = loc;
+        const url = `${endpoint}lat=${lat}&lng=${lng}`;
 
         return fetch(url)
             .then((res) => res.json())

@@ -60,6 +60,7 @@ function Forecast(props) {
 
     React.useEffect(() => {
         const { lat, lng } = queryString.parse(location.search);
+        if (!lat || !lng) return;
         api.fetchForecast({ lat, lng }).then((data) => {
             setForecast(data);
         });
