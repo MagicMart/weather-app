@@ -33,7 +33,6 @@ function LocationInput({ history }) {
         lat.current = undefined;
         lng.current = undefined;
         setCity("");
-        searchRef.current.focus();
         e.preventDefault();
     };
 
