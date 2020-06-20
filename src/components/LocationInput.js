@@ -10,6 +10,7 @@ function LocationInput({ history }) {
     const lng = React.useRef();
 
     React.useEffect(() => {
+        // eslint-disable-next-line no-undef
         const dropdown = new google.maps.places.Autocomplete(searchRef.current);
 
         dropdown.addListener("place_changed", () => {
