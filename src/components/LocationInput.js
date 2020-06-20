@@ -18,7 +18,6 @@ function LocationInput({ history }) {
             lat.current = place.geometry.location.lat();
             lng.current = place.geometry.location.lng();
             setCity(place.formatted_address);
-            submitRef.current.focus()
         });
     }, []);
 
