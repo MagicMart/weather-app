@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import loadable from "@loadable/component";
 import Header from "./Header";
 import Home from "./Home";
@@ -9,27 +9,27 @@ function Loading(props) {
 }
 
 const Forecast = loadable(() => import("./Forecast"), {
-    fallback: <Loading />
+    fallback: <Loading />,
 });
 const Details = loadable(() => import("./Details"), {
-    fallback: <Loading />
+    fallback: <Loading />,
 });
 
 function App() {
     return (
         <Router>
-            <React.Fragment>
+            <React.StrictMode>
                 <Header />
                 <div className="container">
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route
                             path="/forecast"
-                            render={props => <Forecast {...props} />}
+                            render={(props) => <Forecast {...props} />}
                         />
                         <Route
                             path="/details"
-                            render={props => <Details {...props} />}
+                            render={(props) => <Details {...props} />}
                         />
                         <Route
                             render={() => (
@@ -40,7 +40,7 @@ function App() {
                         />
                     </Switch>
                 </div>
-            </React.Fragment>
+            </React.StrictMode>
         </Router>
     );
 }
