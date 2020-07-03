@@ -25,7 +25,7 @@ const fetchForecast = memoize(
             .then((data) => data)
             .catch(handleError);
     },
-    { maxAge: 600000 }
+    { maxAge: 600000 } // 10mins
 );
 
 export default {
