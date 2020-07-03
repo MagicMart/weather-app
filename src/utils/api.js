@@ -15,6 +15,12 @@ const fetchForecast = memoize(
         const url = `${endpoint}lat=${lat}&lng=${lng}`;
 
         return fetch(url)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return res;
+            })
             .then((res) => res.json())
             .then((data) => data)
             .catch(handleError);
