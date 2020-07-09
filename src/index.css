@@ -1,6 +1,10 @@
+:root {
+    --cl-bg: #f2f29f;
+    --cl-bg-header: #f7983a;
+}
+
 html {
     box-sizing: border-box;
-    background-color: #f2f29f;
 }
 *,
 *:before,
@@ -11,7 +15,7 @@ html {
 html,
 body,
 #root {
-    height: 100%;
+    min-height: 100vh;
 }
 
 body {
@@ -20,10 +24,7 @@ body {
         "Segoe UI Symbol";
     margin: 0;
     padding: 0;
-}
-
-p {
-    font-size: 16px;
+    background-color: var(--cl-bg);
 }
 
 h1 {
@@ -34,7 +35,6 @@ h1 {
 .container {
     max-width: 1028px;
     margin: 0 auto;
-    background-color: #f2f29f;
 }
 
 .header {
@@ -42,11 +42,7 @@ h1 {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background: #f7983a;
-}
-
-.home-input {
-    margin-top: 100px;
+    background: var(--cl-bg-header);
 }
 
 form {
@@ -139,7 +135,7 @@ th[scope="col"] {
     text-decoration: none;
     border: none;
     padding: 6px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     border-radius: 3px;
 }
