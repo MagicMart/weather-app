@@ -83,14 +83,14 @@ li {
     transition: transform 0.2s;
 }
 
-a {
+.card {
     text-decoration: none;
     color: #3f3d3d;
     border: 1px solid #008000;
 }
 
-a:hover,
-a:focus {
+.card:hover,
+.card:focus {
     transform: scale(1.1);
 }
 

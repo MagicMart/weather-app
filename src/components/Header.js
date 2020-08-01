@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LocationInput from "./LocationInput";
 
 function Header() {
     return (
         <header role="banner" className="header">
             <h1>
-                Weather App <span style={{ fontSize: "32px" }}>&#127774;</span>
+                <Link to="/">Weather App</Link>{" "}
+                <span style={{ fontSize: "32px" }}>&#127774;</span>
             </h1>
             <LocationInput />
         </header>

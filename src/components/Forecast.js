@@ -20,6 +20,7 @@ function Icon({ forecast }) {
                     .map((el, i) => (
                         <li key={el + i}>
                             <Link
+                                className="card"
                                 to={{
                                     pathname: "/details",
                                     state: {
