@@ -60,13 +60,17 @@ function Forecast(props) {
     const [forecast, setForecast] = React.useState(null);
 
     React.useEffect(() => {
+        setForecast(null);
+        let mounted = true;
         const { lat, lng } = queryString.parse(location.search);
         if (!lat || !lng) return;
         api.fetchForecast({ lat, lng }).then((data) => {
-            setForecast(data);
+            mounted && setForecast(data);
         });
 
-        return () => setForecast(null);
+        return () => {
+            mounted = false;
+        };
     }, [props.location]);
 
     if (!forecast) {
