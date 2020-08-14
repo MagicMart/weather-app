@@ -11,6 +11,7 @@ function Loading(props) {
 const Forecast = loadable(() => import("./Forecast"), {
     fallback: <Loading />,
 });
+
 const Details = loadable(() => import("./Details"), {
     fallback: <Loading />,
 });

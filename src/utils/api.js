@@ -10,8 +10,7 @@ const endpoint =
     "https://vh7fs6xb15.execute-api.eu-west-2.amazonaws.com/fetchforecast?";
 
 const fetchForecast = memoize(
-    function FiveDay(loc) {
-        const { lat, lng } = loc;
+    function FiveDay(lat, lng) {
         const url = `${endpoint}lat=${lat}&lng=${lng}`;
 
         return fetch(url)

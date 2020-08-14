@@ -64,7 +64,7 @@ function Forecast(props) {
         let mounted = true;
         const { lat, lng } = queryString.parse(location.search);
         if (!lat || !lng) return;
-        api.fetchForecast({ lat, lng }).then((data) => {
+        api.fetchForecast(lat, lng).then((data) => {
             mounted && setForecast(data);
         });
 
