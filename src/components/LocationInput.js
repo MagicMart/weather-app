@@ -1,15 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-function LocationInput({ history }) {
+function LocationInput() {
     const [city, setCity] = React.useState("");
+    const history = useHistory();
     const submitRef = React.useRef();
     const searchRef = React.useRef();
     const lat = React.useRef();
     const lng = React.useRef();
 
     React.useEffect(() => {
+        // @ts-ignore
         // eslint-disable-next-line no-undef
         const dropdown = new google.maps.places.Autocomplete(searchRef.current);
 
@@ -29,6 +30,7 @@ function LocationInput({ history }) {
             search: `lat=${lat.current}&lng=${lng.current}`,
         });
         // removes text input field
+        // @ts-ignore
         searchRef.current.value = "";
         lat.current = undefined;
         lng.current = undefined;
@@ -63,11 +65,4 @@ function LocationInput({ history }) {
     );
 }
 
-LocationInput.propTypes = {
-    history: PropTypes.object.isRequired,
-    push: PropTypes.func,
-};
-
-const LocationInputWithRouter = withRouter(LocationInput);
-
-export default LocationInputWithRouter;
+export default LocationInput;
