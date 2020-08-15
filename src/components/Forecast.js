@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import api from "../utils/api";
 import { handleDate } from "../utils/helpers";
 import queryString from "query-string";
@@ -56,11 +56,11 @@ Icon.propTypes = {
     forecast: PropTypes.object.isRequired,
 };
 
-function Forecast(props) {
+function Forecast() {
     const [forecast, setForecast] = React.useState(null);
+    const location = useLocation();
 
     React.useEffect(() => {
-        setForecast(null);
         let mounted = true;
         const { lat, lng } = queryString.parse(location.search);
         if (!lat || !lng) return;
@@ -69,9 +69,10 @@ function Forecast(props) {
         });
 
         return () => {
+            setForecast(null);
             mounted = false;
         };
-    }, [props.location]);
+    }, [location]);
 
     if (!forecast) {
         return <h2 className="weather-container">Loading</h2>;
@@ -86,9 +87,5 @@ function Forecast(props) {
         </>
     );
 }
-
-Forecast.propTypes = {
-    location: PropTypes.object.isRequired,
-};
 
 export default Forecast;

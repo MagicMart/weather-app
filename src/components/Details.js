@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, Redirect } from "react-router-dom";
 import { handleDate } from "../utils/helpers";
 import PropTypes from "prop-types";
 
@@ -70,33 +71,28 @@ DetailDisplay.propTypes = {
     details: PropTypes.object.isRequired,
 };
 
-function Details({ location: { state }, history }) {
-    const forecastDetails = state;
+function Details() {
+    const location = useLocation();
 
-    if (!forecastDetails) {
-        // if (location.search) {
-        //     history.push(`/forecast${location.search}`);
-        // } else {
-        history.push("/");
+    const state = React.useRef(location.state);
+
+    if (!state.current) {
+        return <Redirect to="/404" />;
     }
+    // @ts-ignore
+    const { name, country, details } = state.current;
 
     return (
         <>
-            {forecastDetails && (
+            {location.state && (
                 <DetailDisplay
-                    name={forecastDetails.name}
-                    country={forecastDetails.country}
-                    details={forecastDetails.details}
+                    name={name}
+                    country={country}
+                    details={details}
                 />
             )}
-            {!forecastDetails && <div className="weather-container" />}
         </>
     );
 }
-
-Details.propTypes = {
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-};
 
 export default Details;

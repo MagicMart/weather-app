@@ -23,22 +23,20 @@ function App() {
                 <Header />
                 <div className="container">
                     <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route
-                            path="/forecast"
-                            render={(props) => <Forecast {...props} />}
-                        />
-                        <Route
-                            path="/details"
-                            render={(props) => <Details {...props} />}
-                        />
-                        <Route
-                            render={() => (
-                                <h2 className="weather-container">
-                                    Page Not Found
-                                </h2>
-                            )}
-                        />
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/forecast">
+                            <Forecast />
+                        </Route>
+                        <Route path="/details">
+                            <Details />
+                        </Route>
+                        <Route path="/404">
+                            <h2 className="weather-container">
+                                Page Not Found
+                            </h2>
+                        </Route>
                     </Switch>
                 </div>
             </React.StrictMode>
