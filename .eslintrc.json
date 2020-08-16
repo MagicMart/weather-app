@@ -16,7 +16,12 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": ["react", "jsx-a11y", "react-hooks"],
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "react-hooks",
+        "@babel/plugin-syntax-dynamic-import"
+    ],
     "rules": {
         "indent": ["error", 4],
         "linebreak-style": ["error", "unix"],
