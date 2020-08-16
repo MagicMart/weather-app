@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import loadable from "@loadable/component";
 import Header from "./Header";
 import Home from "./Home";
 
@@ -8,13 +7,8 @@ function Loading(props) {
     return <h2 className="weather-container">Loading</h2>;
 }
 
-const Forecast = loadable(() => import("./Forecast"), {
-    fallback: <Loading />,
-});
-
-const Details = loadable(() => import("./Details"), {
-    fallback: <Loading />,
-});
+const Forecast = React.lazy(() => import("./Forecast"));
+const Details = React.lazy(() => import("./Details"));
 
 function App() {
     return (
@@ -26,12 +20,16 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
-                        <Route path="/forecast">
-                            <Forecast />
-                        </Route>
-                        <Route path="/details">
-                            <Details />
-                        </Route>
+
+                        <React.Suspense fallback={<Loading />}>
+                            <Route path="/forecast">
+                                <Forecast />
+                            </Route>
+                            <Route path="/details">
+                                <Details />
+                            </Route>
+                        </React.Suspense>
+
                         <Route path="/404">
                             <h2 className="weather-container">
                                 Page Not Found
