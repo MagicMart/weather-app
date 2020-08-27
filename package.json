@@ -20,7 +20,7 @@
         "@babel/preset-env": "^7.9.5",
         "@babel/preset-react": "^7.9.4",
         "babel-loader": "^8.1.0",
-        "copy-webpack-plugin": "^5.1.1",
+        "copy-webpack-plugin": "^6.0.3",
         "css-loader": "^2.1.1",
         "eslint": "^5.16.0",
         "eslint-plugin-jsx-a11y": "^6.2.3",

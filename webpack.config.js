@@ -26,7 +26,7 @@ module.exports = {
         historyApiFallback: true,
     },
     plugins: [
-        new CopyPlugin([{ from: "_redirects" }]),
+        new CopyPlugin({ patterns: [{ from: "_redirects" }] }),
         new HtmlWebpackPlugin({
             template: "src/index.html",
         }),
