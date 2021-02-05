@@ -7,11 +7,11 @@ function handleError(error) {
 }
 
 const endpoint =
-    "https://vh7fs6xb15.execute-api.eu-west-2.amazonaws.com/fetchforecast?";
+    "https://qaznvmeqs4.execute-api.eu-west-2.amazonaws.com/forecast";
 
 const fetchForecast = memoize(
     function FiveDay(lat, lng) {
-        const url = `${endpoint}lat=${lat}&lng=${lng}`;
+        const url = `${endpoint}?lat=${lat}&lon=${lng}`;
 
         return fetch(url)
             .then((res) => {
@@ -21,7 +21,11 @@ const fetchForecast = memoize(
                 return res;
             })
             .then((res) => res.json())
-            .then((data) => data)
+            .then((data) => {
+                if (data.cod !== "200")
+                    throw new Error("Network response was not ok");
+                return data;
+            })
             .catch(handleError);
     },
     { maxAge: 600000 } // 10mins
