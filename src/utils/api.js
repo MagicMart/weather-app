@@ -13,7 +13,7 @@ const fetchForecast = memoize(
     function FiveDay(lat, lng) {
         const url = `${endpoint}?lat=${lat}&lon=${lng}`;
 
-        return fetch(url)
+        return fetch(url, { headers: { MyApp: "Weather-App" } })
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Network response was not ok");
