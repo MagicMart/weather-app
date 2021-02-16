@@ -12,7 +12,7 @@ const endpoint =
 const fetchForecast = memoize(
     function FiveDay(lat, lng) {
         const url = `${endpoint}?lat=${lat}&lon=${lng}`;
-
+        // MyApp header makes sure the api-gateway endpoint can't be used outside this app
         return fetch(url, { headers: { MyApp: "Weather-App" } })
             .then((res) => {
                 if (!res.ok) {
