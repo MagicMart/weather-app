@@ -6,7 +6,9 @@ function Header() {
     return (
         <header role="banner" className="header">
             <h1>
-                <Link to="/">Weather App</Link>{" "}
+                <Link to="/" style={{ color: "var(--black)" }}>
+                    Weather App
+                </Link>{" "}
                 <span style={{ fontSize: "32px" }}>&#127774;</span>
             </h1>
             <LocationInput />

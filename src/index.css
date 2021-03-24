@@ -1,6 +1,7 @@
 :root {
     --cl-bg: beige;
     --cl-bg-header: beige;
+    --black: #1f1c1c;
 }
 
 html {
@@ -27,7 +28,9 @@ body {
     background-color: var(--cl-bg);
 }
 
-h1 {
+h1,
+h2 {
+    font-weight: normal;
     margin: 0;
     font-size: 32px;
 }
