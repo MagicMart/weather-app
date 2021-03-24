@@ -31,7 +31,7 @@ function App() {
                         </React.Suspense>
 
                         <Route path="/404">
-                            <h2 className="weather-container">
+                            <h2 role="main" className="weather-container">
                                 Page Not Found
                             </h2>
                         </Route>
